@@ -1,0 +1,397 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 한국어(대한민국) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#include ""res\\ImageInspection.rc2""  // Microsoft Visual C++ 이외의 다른 도구에서 편집한 리소스입니다.\r\n"
+    "#include ""l.KOR\\afxres.rc""      // 표준 구성 요소입니다.\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\ImageInspection.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ImageInspection 정보"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "ImageInspection, 버전 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2020",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "확인",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_IMAGEINSPECTION_DIALOG DIALOGEX 0, 0, 763, 549
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_ACCEPTFILES
+CAPTION "ImageInspection"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_STATIC_IMAGE,2,38,517,509,WS_BORDER,WS_EX_ACCEPTFILES
+    LTEXT           " Image Size:",IDC_STATIC_IMAGE_SIZE,2,2,108,13,SS_CENTERIMAGE | WS_BORDER
+    LTEXT           " Image Zoom:",IDC_STATIC_IMAGE_ZOOM,112,2,64,13,SS_CENTERIMAGE | WS_BORDER
+    LTEXT           " Image Position:",IDC_STATIC_IMAGE_POSITION,178,2,558,13,SS_CENTERIMAGE | WS_BORDER
+    CONTROL         "",IDC_DEFECT_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,523,328,237,218
+    PUSHBUTTON      "Load Image",IDC_BUTTON_LOAD_IMAGE,522,295,113,19
+    PUSHBUTTON      "Inspection",IDC_BUTTON_INSPECTION,639,295,117,19
+    RTEXT           "Vertical Dist : ",IDC_STATIC,522,119,60,12,SS_CENTERIMAGE | WS_BORDER
+    RTEXT           "Horizontal Dist : ",IDC_STATIC,522,132,60,12,SS_CENTERIMAGE | WS_BORDER
+    RTEXT           "Min Size : ",IDC_STATIC,522,155,60,12,SS_CENTERIMAGE | WS_BORDER
+    RTEXT           "Merge Distance : ",IDC_STATIC,522,179,60,12,SS_CENTERIMAGE | WS_BORDER
+    RTEXT           "Threshold : ",IDC_STATIC,522,69,60,12,SS_CENTERIMAGE | WS_BORDER
+    CONTROL         "Multi Threshold",IDC_CHECK_MULTI_THRESHOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,522,96,59,8
+    RTEXT           "Multi Threshold : ",IDC_STATIC,522,83,60,12,SS_CENTERIMAGE | WS_BORDER
+    CONTROL         "Horizontal",IDC_CHECK_HORIZONTAL_COMPARE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,522,145,42,8
+    EDITTEXT        IDC_EDIT_VERTICAL_DISTANCE,584,119,43,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HORIZONTAL_DISTANCE,584,132,43,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_THRESHOLD_LOW,584,69,43,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_THRESHOLD_HIGH,639,69,46,12,ES_RIGHT | ES_AUTOHSCROLL
+    CTEXT           "~",IDC_STATIC,629,67,8,13,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_THRESHOLD_LOW2,584,83,43,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_THRESHOLD_HIGH2,639,83,46,12,ES_RIGHT | ES_AUTOHSCROLL
+    CTEXT           "~",IDC_STATIC,629,81,8,13,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_MIN_SIZE,584,155,43,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MERGE_DISTANCE,584,179,43,12,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "",IDC_STATIC_TEXT,523,313,237,13,SS_CENTERIMAGE | WS_BORDER
+    EDITTEXT        IDC_EDIT_ROI_LEFT,568,41,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ROI_TOP,568,54,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    RTEXT           "Left :",IDC_STATIC,527,41,39,12,SS_CENTERIMAGE | WS_BORDER
+    RTEXT           "Top :",IDC_STATIC,527,54,39,12,SS_CENTERIMAGE | WS_BORDER
+    EDITTEXT        IDC_EDIT_ROI_RIGHT,649,41,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ROI_BOTTOM,649,54,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    RTEXT           "Right :",IDC_STATIC,607,41,39,12,SS_CENTERIMAGE | WS_BORDER
+    RTEXT           "Bottom :",IDC_STATIC,607,54,39,12,SS_CENTERIMAGE | WS_BORDER
+    PUSHBUTTON      "Gray Data Save",IDC_BUTTON_GRAY_DATA_SAVE,692,59,62,19,NOT WS_VISIBLE
+    PUSHBUTTON      "Save ROI Image",IDC_BUTTON_SAVE_ROI_IMAGE,692,38,63,19
+    CONTROL         "Source Image",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,692,80,53,9
+    CONTROL         "Multi Low Image",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,692,104,64,9
+    CONTROL         "Multi High Image",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,692,92,63,9
+    PUSHBUTTON      "Set",IDC_SET,631,236,57,18,BS_CENTER
+    CONTROL         "Adjacent Edge Slope Filter",IDC_CHECK_ADJACENT_SLOPE_FILTER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,522,218,95,8
+    CONTROL         "Period Slope Filter",IDC_CHECK_PERIOD_SLOPE_FILTER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,522,241,77,8
+    RTEXT           "Judgment, Th : ",IDC_STATIC,522,227,60,12,SS_CENTERIMAGE | WS_BORDER
+    EDITTEXT        IDC_EDIT_EDGE_JUDGMENT,584,227,21,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_EDGE_SLOPE_TH,606,227,22,12,ES_RIGHT | ES_AUTOHSCROLL
+    CTEXT           "Period Judge Th : ",IDC_STATIC,522,250,60,12,SS_CENTERIMAGE | WS_BORDER
+    EDITTEXT        IDC_EDIT_PERIOD_SLOPE_TH,606,249,22,12,ES_RIGHT | ES_AUTOHSCROLL
+    PUSHBUTTON      "LOAD RECIPE",IDC_BUTTON_LOADRECIPE,632,102,55,15,BS_CENTER | BS_MULTILINE
+    GROUPBOX        "ROI",IDC_STATIC,522,32,167,36
+    RTEXT           "Max Size : ",IDC_STATIC,522,167,60,12,SS_CENTERIMAGE | WS_BORDER
+    EDITTEXT        IDC_EDIT_MAX_SIZE,584,167,43,12,ES_RIGHT | ES_AUTOHSCROLL
+    RTEXT           "MultiTHGray : ",IDC_STATIC,522,105,60,12,SS_CENTERIMAGE | WS_BORDER
+    EDITTEXT        IDC_EDIT_MULTI_TH_GRAY,584,105,43,12,ES_RIGHT | ES_AUTOHSCROLL
+    PUSHBUTTON      "Save Result",IDC_BUTTON_SAVE_RESULT,632,119,55,15,BS_CENTER
+    RTEXT           "FOV : ",IDC_STATIC,522,192,60,12,SS_CENTERIMAGE | WS_BORDER
+    EDITTEXT        IDC_EDIT_FOV,584,192,43,12,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "",IDC_STATIC_IMAGE_INFO,3,19,733,13,SS_CENTERIMAGE | WS_BORDER
+    PUSHBUTTON      "Load List",IDC_BUTTON_LIST,632,135,55,15,BS_CENTER
+    LISTBOX         IDC_IMAGELIST,629,168,58,63,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    CONTROL         "OSG Inspect",IDC_CHECK_ASG_INSPECT_ON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,636,268,50,8
+    CONTROL         "Tracking Filter",IDC_CHECK_TRACKING_FILTER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,522,262,58,8
+    RTEXT           "Pixel Range, Th : ",IDC_STATIC,522,272,60,12,SS_CENTERIMAGE | WS_BORDER
+    EDITTEXT        IDC_EDIT_TRACKING_PIXEL_RANGE,584,272,21,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TRACKING_THRESHOLD,606,272,21,12,ES_RIGHT | ES_AUTOHSCROLL
+    CONTROL         "Nearby Check Filter",IDC_CHECK_NEARBYCHECK_FILTER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,522,286,73,8
+    RTEXT           "Cell Size(um) : ",IDC_STATIC,522,205,60,12,SS_CENTERIMAGE | WS_BORDER
+    EDITTEXT        IDC_EDIT_CellSize,584,205,43,12,ES_RIGHT | ES_AUTOHSCROLL
+    PUSHBUTTON      "Calc. Dlg",IDC_BUTTON_OPEN_DDMCALC_DLG,635,279,38,15,0,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Image Size Load",IDC_IMAGE_SIZE_LOAD,632,151,55,15
+    CONTROL         "Diagonal",IDC_CHECK_DIAGONAL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,584,145,37,8
+    CONTROL         "Show ROI",IDC_CHECK_SHOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,636,255,46,10
+    PUSHBUTTON      "Auto ROI Offset",IDC_ROI_OFFSET_FUNC,697,276,59,17
+    PUSHBUTTON      "Auto Cal. Period",IDC_BUTTON_AUTO_CAL_PERIOD,690,118,63,19
+    EDITTEXT        IDC_EDIT_PERIOD_SLOPE_JUDGMENT,584,249,21,12,ES_RIGHT | ES_AUTOHSCROLL
+    CONTROL         "M Filter",IDC_CHECK_MOUNTAIN_FILTER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,582,261,46,10
+END
+
+IDD_DDMCALC_DIALOG DIALOGEX 0, 0, 343, 203
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DDM Calculator"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Recipe File",IDC_BUTTON_SELECT_RECIPE_FILE,11,14,56,25
+    EDITTEXT        IDC_EDIT_X_COORDINATE,75,25,56,14,ES_CENTER | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_Y_COORDINATE,138,25,56,14,ES_CENTER | ES_AUTOHSCROLL
+    PUSHBUTTON      "Conversion",IDC_BUTTON_COORDINATE_TO_IMAGEPOSITION,11,42,56,25
+    EDITTEXT        IDC_EDIT_CALC_CAMERA_NO,75,53,56,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_CALC_SCAN_NO,138,53,56,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_CALC_FRAME_NO,202,53,56,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "X Coor.",IDC_STATIC,75,14,42,10
+    LTEXT           "Y Coor.",IDC_STATIC,138,14,42,10
+    LTEXT           "Camera No.",IDC_STATIC,75,42,42,10
+    LTEXT           "Scan No.",IDC_STATIC,138,42,42,10
+    LTEXT           "Frame No.",IDC_STATIC,202,42,42,10
+    GROUPBOX        "Glass Coordinate to Image Position",IDC_STATIC,6,3,261,71
+    EDITTEXT        IDC_EDIT_CALC_LEFT,18,86,56,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_CALC_RIGHT,81,87,56,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_CALC_TOP,145,87,56,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_CALC_BOTTOM,211,86,56,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Left",IDC_STATIC,28,75,42,10
+    LTEXT           "Right",IDC_STATIC,96,76,42,10
+    LTEXT           "Top",IDC_STATIC,164,76,42,10
+    LTEXT           "Bottom",IDC_STATIC,229,75,42,10
+END
+
+IDD_DIALOG_AUTO_CAL DIALOGEX 0, 0, 177, 180
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Auto Cal. Period"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_PERIOD_START,49,17,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PERIOD_END,119,17,40,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Auto Cal. Vert Period",IDC_BUTTON_AUTO_SEARCH,13,40,150,20
+    PUSHBUTTON      "Apply",IDC_BUTTON_APPLY,7,153,80,20
+    PUSHBUTTON      "Cancel",IDC_BUTTON_CANCEL,90,153,80,20
+    LTEXT           "Start",IDC_STATIC,18,19,19,11
+    LTEXT           "End",IDC_STATIC,98,19,19,11
+    PUSHBUTTON      "Auto Cal. Hori Period",IDC_BUTTON_AUTO_SEARCH_HORIZONTAL,15,108,150,20
+    EDITTEXT        IDC_EDIT_HORI_PERIOD_START,48,87,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HORI_PERIOD_END,118,87,40,14,ES_AUTOHSCROLL
+    LTEXT           "Start",IDC_STATIC,16,90,19,11
+    LTEXT           "End",IDC_STATIC,96,90,19,11
+    EDITTEXT        IDC_EDIT_RESULT,7,137,162,14,ES_AUTOHSCROLL | ES_READONLY
+    GROUPBOX        "Vertical Period",IDC_STATIC,7,7,163,61
+    GROUPBOX        "Horizontal Period",IDC_STATIC,7,74,163,61
+END
+
+IDD_DIALOG1 DIALOGEX 0, 0, 309, 176
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,198,155,50,14
+    PUSHBUTTON      "취소",IDCANCEL,252,155,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041203b5"
+        BEGIN
+            VALUE "CompanyName", "TODO: <회사 이름>"
+            VALUE "FileDescription", "TODO: <파일 설명>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "ImageInspection.exe"
+            VALUE "LegalCopyright", "TODO: (c) <회사 이름>.  All rights reserved."
+            VALUE "OriginalFilename", "ImageInspection.exe"
+            VALUE "ProductName", "TODO: <제품 이름>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 949
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_IMAGEINSPECTION_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 760
+        BOTTOMMARGIN, 546
+    END
+
+    IDD_DDMCALC_DIALOG, DIALOG
+    BEGIN
+    END
+
+    IDD_DIALOG_AUTO_CAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 170
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 169
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_CONTEXTMENU MENU
+BEGIN
+    POPUP "Context Image"
+    BEGIN
+        MENUITEM "Profile",                     ID_PROFILE
+        MENUITEM "Draw Defect",                 ID_DRAW_DEFECT
+        MENUITEM "Pan Image",                   ID_PAN_IMAGE
+        MENUITEM "Normalize Gray",              ID_NORMALIZE_GRAY
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_IMAGEINSPECTION_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DDMCALC_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_AUTO_CAL AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG1 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "ImageInspection 정보(&A)..."
+END
+
+#endif    // 한국어(대한민국) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE 18, 1
+#pragma code_page(949)
+#include "res\ImageInspection.rc2"  // Microsoft Visual C++ 이외의 다른 도구에서 편집한 리소스입니다.
+#include "l.KOR\afxres.rc"      // 표준 구성 요소입니다.
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
