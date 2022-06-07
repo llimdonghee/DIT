@@ -41,7 +41,7 @@
 #define		MAX_DEFECT_PIXELCNT			8192	// 163840
 #define		MAX_DEFECT_CNT				8192	// 18432
 
-#define		DDM_PARAM_PATH				"D:\\ImageInspection\\Param.ini"
+#define		DETECT_PARAM_PATH			"C:\\0_TEST\\DetectionModule\\Param.ini"
 
 typedef struct tagEdgeSlopeFilterParam
 {
@@ -536,7 +536,7 @@ public:
 public:
 	void				Clear() { m_Merge.ResetContiner(); m_DefectFeature->Clear(); }
 	void				Inspection(BYTE* pImage, BYTE* pSubtractLowImage, BYTE* pSubtractHighImage, int iWidth, int iHeight);
-	int					PitchInspection();
+	int					VerticalInspection();
 	BOOL				CellSubMultiInspection(int iFrameNo, int x, int y, __m128i *pInsp, __m128i *xImg, __m128i *pUp, __m128i *xUp, __m128i *pDown, __m128i *xDown, int iDistH, int iDistV,
 						__m128i *xThreshold_UseGrayLow, __m128i *xThreshold_UseGrayHigh, __m128i *xThreshold_UseGray,
 						__m128i *xDifferenceLow, __m128i *xDifferenceHigh, __m128i *xDifference, __m128i *xResultLow, __m128i *xResultHigh, __m128i *xResult, int MAX_RPOCESS_WIDTH_32,

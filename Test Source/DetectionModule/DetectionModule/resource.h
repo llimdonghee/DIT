@@ -16,6 +16,12 @@
 #define ID_DRAW_DEFECT                  1002
 #define ID_PAN_IMAGE                    1003
 #define ID_NORMALIZE_GRAY               1004
+#define IDC_BUTTON_INSPECTION           2000
+#define IDC_EDIT_ROI_LEFT               2001
+#define IDC_EDIT_ROI_TOP                2002
+#define IDC_EDIT_ROI_RIGHT              2003
+#define IDC_EDIT_ROI_BOTTOM             2004
+#define IDC_SET                         2005
 
 // Next default values for new objects
 // 
