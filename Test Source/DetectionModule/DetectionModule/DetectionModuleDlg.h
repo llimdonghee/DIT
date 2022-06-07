@@ -42,6 +42,8 @@ public:
 	afx_msg void OnBnClickedButtonInspection();
 	afx_msg void OnBnClickedSet();
 
+	CButton m_EnableHorizontalComp;
+	CButton m_EnableDiagonalComp;
 //변수 선언
 public:
 	CImageViewWnd*			m_pImageWnd;

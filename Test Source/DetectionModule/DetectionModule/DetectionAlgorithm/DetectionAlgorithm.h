@@ -50,20 +50,20 @@ typedef struct tagEdgeSlopeFilterParam
 		bMultiTH(FALSE), bEnableEdgeSlope(FALSE), iEdgeJudgment(0), iEdgeSlopeTh(0),
 		xResult(NULL), xResultLow(NULL), xResultHigh(NULL)
 	{
-		xThreshold_UseGray = _mm_set1_epi8(static_cast<char>(0));
-		xThreshold_UseGrayLow = _mm_set1_epi8(static_cast<char>(0));
-		xThreshold_UseGrayHigh = _mm_set1_epi8(static_cast<char>(0));
-		xImg = _mm_set1_epi8(static_cast<char>(0));
-		xZeros = _mm_set1_epi8(static_cast<char>(0));
-		xMask = _mm_set1_epi8(0xFF);
+		xThreshold_UseGray = _mm256_set1_epi8(static_cast<char>(0));
+		xThreshold_UseGrayLow = _mm256_set1_epi8(static_cast<char>(0));
+		xThreshold_UseGrayHigh = _mm256_set1_epi8(static_cast<char>(0));
+		xImg = _mm256_set1_epi8(static_cast<char>(0));
+		xZeros = _mm256_set1_epi8(static_cast<char>(0));
+		xMask = _mm256_set1_epi8(0xFF);
 	}
 
 	void Set(int left, int right, int x, int y, int iDistH, int iDistV, int iMAX_RPOCESS_WIDTH,
-		__m128i *pInsp, __m128i *pUp, __m128i *pDown, __m128i xImg,
-		__m128i xThreshold_UseGray, __m128i xThreshold_UseGrayLow, __m128i xThreshold_UseGrayHigh,
-		__m128i *xDifference, __m128i *xDifferenceLow, __m128i *xDifferenceHigh,
+		__m256i *pInsp, __m256i *pUp, __m256i *pDown, __m256i xImg,
+		__m256i xThreshold_UseGray, __m256i xThreshold_UseGrayLow, __m256i xThreshold_UseGrayHigh,
+		__m256i *xDifference, __m256i *xDifferenceLow, __m256i *xDifferenceHigh,
 		BOOL bMultiTH, BOOL bEnableEdgeSlope, int iEdgeJudgment, int iEdgeSlopeTh,
-		__m128i xZeros, __m128i xMask, __m128i *xResult, __m128i *xResultLow, __m128i *xResultHigh)
+		__m256i xZeros, __m256i xMask, __m256i *xResult, __m256i *xResultLow, __m256i *xResultHigh)
 	{
 		this->left = left;
 		this->right = right;
@@ -124,14 +124,14 @@ typedef struct tagEdgeSlopeFilterParam
 	}
 
 	int left, right, x, y, iDistH, iDistV, iMAX_RPOCESS_WIDTH;
-	__m128i *pInsp, *pUp, *pDown, xImg;
-	__m128i xThreshold_UseGray, xThreshold_UseGrayLow, xThreshold_UseGrayHigh;
-	__m128i *xDifference, *xDifferenceLow, *xDifferenceHigh;
+	__m256i *pInsp, *pUp, *pDown, xImg;
+	__m256i xThreshold_UseGray, xThreshold_UseGrayLow, xThreshold_UseGrayHigh;
+	__m256i *xDifference, *xDifferenceLow, *xDifferenceHigh;
 	BOOL bMultiTH;
 	BOOL bEnableEdgeSlope;
 	int iEdgeJudgment, iEdgeSlopeTh;
-	__m128i xZeros, xMask;
-	__m128i *xResult, *xResultLow, *xResultHigh;
+	__m256i xZeros, xMask;
+	__m256i *xResult, *xResultLow, *xResultHigh;
 } EdgeSlopeFilterParam;
 
 typedef struct tagPeriodSlopeFilterParam
@@ -141,20 +141,20 @@ typedef struct tagPeriodSlopeFilterParam
 		bMultiTH(FALSE), bEnablePeriodSlope(FALSE), iPeriodSlopeJudgment(10), iPeriodSlopeTh(0),
 		xResult(NULL), xResultLow(NULL), xResultHigh(NULL)
 	{
-		xThreshold_UseGray = _mm_set1_epi8(static_cast<char>(0));
-		xThreshold_UseGrayLow = _mm_set1_epi8(static_cast<char>(0));
-		xThreshold_UseGrayHigh = _mm_set1_epi8(static_cast<char>(0));
-		xImg = _mm_set1_epi8(static_cast<char>(0));
-		xZeros = _mm_set1_epi8(static_cast<char>(0));
-		xMask = _mm_set1_epi8(0xFF);
+		xThreshold_UseGray = _mm256_set1_epi8(static_cast<char>(0));
+		xThreshold_UseGrayLow = _mm256_set1_epi8(static_cast<char>(0));
+		xThreshold_UseGrayHigh = _mm256_set1_epi8(static_cast<char>(0));
+		xImg = _mm256_set1_epi8(static_cast<char>(0));
+		xZeros = _mm256_set1_epi8(static_cast<char>(0));
+		xMask = _mm256_set1_epi8(0xFF);
 	};
 
 	void Set(int left, int right, int x, int y, int iDistH, int iDistV,
-		__m128i *pInsp, __m128i xImg,
-		__m128i xThreshold_UseGray, __m128i xThreshold_UseGrayLow, __m128i xThreshold_UseGrayHigh,
-		__m128i *xDifference, __m128i *xDifferenceLow, __m128i *xDifferenceHigh,
+		__m256i *pInsp, __m256i xImg,
+		__m256i xThreshold_UseGray, __m256i xThreshold_UseGrayLow, __m256i xThreshold_UseGrayHigh,
+		__m256i *xDifference, __m256i *xDifferenceLow, __m256i *xDifferenceHigh,
 		BOOL bMultiTH, BOOL bEnablePeriodSlope, int iPeriodSlopeJudgment, int iPeriodSlopeTh,
-		__m128i xZeros, __m128i xMask, __m128i *xResult, __m128i *xResultLow, __m128i *xResultHigh)
+		__m256i xZeros, __m256i xMask, __m256i *xResult, __m256i *xResultLow, __m256i *xResultHigh)
 	{
 		this->left = left;
 		this->right = right;
@@ -209,14 +209,14 @@ typedef struct tagPeriodSlopeFilterParam
 	}
 
 	int left, right, x, y, iDistH, iDistV;
-	__m128i *pInsp, xImg;
-	__m128i xThreshold_UseGray, xThreshold_UseGrayLow, xThreshold_UseGrayHigh;
-	__m128i *xDifference, *xDifferenceLow, *xDifferenceHigh;
+	__m256i *pInsp, xImg;
+	__m256i xThreshold_UseGray, xThreshold_UseGrayLow, xThreshold_UseGrayHigh;
+	__m256i *xDifference, *xDifferenceLow, *xDifferenceHigh;
 	BOOL bMultiTH;
 	BOOL bEnablePeriodSlope;
 	int iPeriodSlopeJudgment, iPeriodSlopeTh;
-	__m128i xZeros, xMask;
-	__m128i *xResult, *xResultLow, *xResultHigh;
+	__m256i xZeros, xMask;
+	__m256i *xResult, *xResultLow, *xResultHigh;
 }PeriodSlopeFilterParam;
 
 class CDetectionModuleDlg;
@@ -225,10 +225,10 @@ typedef struct tagDefectPos
 {
 	int x;
 	int y;
-	__m128i	POS;
-	__m128i DefectGray;
-	__m128i ReferenceGray;
-	__m128i DeleteGray;
+	__m256i	POS;
+	__m256i DefectGray;
+	__m256i ReferenceGray;
+	__m256i DeleteGray;
 } DefectPos;
 
 class CParam
@@ -387,6 +387,7 @@ public:
 public:
 	int		iMergeDistance;
 	BOOL	AddPixel(int x, int y, char Gray, char Reference);
+	int GetExponent(int num, int under);
 
 	CMergedDefect DefectList[MAX_1_MERGE_SIZE_BY_PIXEL];
 
@@ -532,14 +533,36 @@ public:
 	int					m_iDefectCnt;
 	int					m_iPixelCnt;
 
+	int					m_iVerticalCnt;
+	int					m_iHorizontalCnt;
+
 	// 작업입니다.
 public:
 	void				Clear() { m_Merge.ResetContiner(); m_DefectFeature->Clear(); }
+
 	void				Inspection(BYTE* pImage, BYTE* pSubtractLowImage, BYTE* pSubtractHighImage, int iWidth, int iHeight);
-	int					VerticalInspection();
-	BOOL				CellSubMultiInspection(int iFrameNo, int x, int y, __m128i *pInsp, __m128i *xImg, __m128i *pUp, __m128i *xUp, __m128i *pDown, __m128i *xDown, int iDistH, int iDistV,
-						__m128i *xThreshold_UseGrayLow, __m128i *xThreshold_UseGrayHigh, __m128i *xThreshold_UseGray,
-						__m128i *xDifferenceLow, __m128i *xDifferenceHigh, __m128i *xDifference, __m128i *xResultLow, __m128i *xResultHigh, __m128i *xResult, int MAX_RPOCESS_WIDTH_32,
+
+	int					VerticalInspection(__m256i* pInsp, __m256i* pUp, __m256i* pDown, __m256i xImg, __m256i xUp, __m256i xDown, BOOL bMultiTH,
+											__m256i xZeros, __m256i xOne, __m256i xMask,
+											__m256i xThreshold, __m256i xThresholdH, __m256i xThreshold2, __m256i xThresholdH2,
+											__m256i xSlope, __m256i xSlopeLow, __m256i xSlopeHigh,
+											__m256i &xThreshold_UseGray, __m256i &xThreshold_UseGrayLow, __m256i &xThreshold_UseGrayHigh,
+											__m256i &xDifference, __m256i &xDifferenceLow, __m256i &xDifferenceHigh,
+											__m256i &xResult, __m256i &xResultLow, __m256i &xResultHigh);
+
+	int					HorizontalInspection(__m256i* pInsp, __m256i* pLeft, __m256i* pRight, __m256i xImg, __m256i xLeft, __m256i xRight, BOOL bMultiTH,
+											__m256i xZeros, __m256i xOne, __m256i xMask,
+											__m256i xThreshold, __m256i xThresholdH, __m256i xThreshold2, __m256i xThresholdH2,
+											__m256i xSlope, __m256i xSlopeLow, __m256i xSlopeHigh,
+											__m256i &xThreshold_UseGray, __m256i &xThreshold_UseGrayLow, __m256i &xThreshold_UseGrayHigh,
+											__m256i &xDifference, __m256i &xDifferenceLow, __m256i &xDifferenceHigh,
+											__m256i &xResult, __m256i &xResultLow, __m256i &xResultHigh);
+
+	int					InspectionProcess();
+
+	BOOL				CellSubMultiInspection(int iFrameNo, int x, int y, __m256i *pInsp, __m256i *xImg, __m256i *pUp, __m256i *xUp, __m256i *pDown, __m256i *xDown, int iDistH, int iDistV,
+						__m256i *xThreshold_UseGrayLow, __m256i *xThreshold_UseGrayHigh, __m256i *xThreshold_UseGray,
+						__m256i *xDifferenceLow, __m256i *xDifferenceHigh, __m256i *xDifference, __m256i *xResultLow, __m256i *xResultHigh, __m256i *xResult, int MAX_RPOCESS_WIDTH_32,
 						int iSubMultiCnt, int *iSubMultiDir, int *iSubMultiFilter, CRect &rtInsp, CRect &rtPreInsp, CRect &rtNextInsp, BOOL bMultiTH,
 						BOOL bEnableDMR, BYTE *pCellMaskROI, BYTE* pPreCellMaskROI, BYTE *pNextCellMaskROI);
 
@@ -549,13 +572,13 @@ public:
 	int					NonPeriodicInspection();
 	int					EdgeInspection(BYTE *CurrentFrame, int left, int right, int top, int bottom, int offset, int th, int thH, DefectPos *pPixelResult, int iMAXCnt, int side, BOOL bSaveEdgeCrackImage);
 	static int			CompareDefectSize(const void* arg1, const void* arg2);
-	void				MakeVector(__m128i *img, int left, int right, int top, int bottom, PMResult *pResult);
+	void				MakeVector(__m256i *img, int left, int right, int top, int bottom, PMResult *pResult);
 	BOOL				MakeRealZoneMask(BYTE* pRealZoneMaskL, BYTE* pRealZoneMaskH, BYTE* pRealZoneMaskL2, BYTE* pRealZoneMaskH2, PMResult *pmResult, int left, int iGenerateWidth);
 	BOOL				CellSlopeFilter(BYTE* pImg, int PosX, int PosY, int left, int right, int top, int bottom, int iDistV, int iDistH, int ThL, int ThH);
 	BOOL				CellSlopeFilter2(BYTE* pImg, int PosX, int PosY, int left, int right, int top, int bottom, int iDistV, int iDistH, int ThL, int ThH, int iSlopeFactor=0);
 	BOOL				ASGSlopeFilter(BYTE* pImg, int PosX, int PosY, int iDistH, int iDistV, int left, int right, int top, int bottom);
 	int					MakeFeature(int iPixelCnt);
-	BOOL				MakeMacroImage(__m128i *pImg, BYTE *pImage, int iWidth, int iHeight, int iMacroRatio);
+	BOOL				MakeMacroImage(__m256i *pImg, BYTE *pImage, int iWidth, int iHeight, int iMacroRatio);
 	BOOL				SaveAsBMP(CString strFileName, BYTE *pImg, int iWidth, int iHeight, BOOL bFLR, BOOL bFUD);
 	BOOL				SobelEdge( unsigned char *pSour, unsigned char *pDest, int iWidth, int iHeight, int nPitch);
 

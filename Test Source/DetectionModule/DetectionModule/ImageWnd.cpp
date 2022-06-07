@@ -1620,7 +1620,7 @@ void CImageViewWnd::OnMouseMove(UINT nFlags, CPoint point)
 
 		m_ptPixel = CPoint((int)((float)(GetScrollPos(SB_HORZ) + point.x) / m_fZoom), (int)((float)(GetScrollPos(SB_VERT) + point.y) / m_fZoom));
 
-		if (po.x >= 0 && po.x < (int)m_DrawImage.Width() - 1 && po.y >= 0 && po.y < (int)m_DrawImage.Height() - 1)
+		if (po.x > 0 && po.x < (int)m_DrawImage.Width() - 1 && po.y > 0 && po.y < (int)m_DrawImage.Height() - 1)
 		{
 			DWORD dwUp = 0, dwImage = 0, dwDown = 0;
 			DWORD dwLeft = 0, dwRight = 0;

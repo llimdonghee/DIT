@@ -32,6 +32,16 @@ void CDetectionModuleDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_ROI_RIGHT, m_iROI_Right);
 	DDX_Text(pDX, IDC_EDIT_ROI_TOP, m_iROI_Top);
 	DDX_Text(pDX, IDC_EDIT_ROI_BOTTOM, m_iROI_Bottom);
+	DDX_Text(pDX, IDC_EDIT_THRESHOLD_LOW, m_iThresholdLow);
+	DDX_Text(pDX, IDC_EDIT_THRESHOLD_HIGH, m_iThresholdHigh);
+	DDX_Text(pDX, IDC_EDIT_THRESHOLD_LOW2, m_iThresholdLow2);
+	DDX_Text(pDX, IDC_EDIT_THRESHOLD_HIGH2, m_iThresholdHigh2);
+	DDX_Text(pDX, IDC_EDIT_MIN_SIZE, m_iMinSize);
+	DDX_Text(pDX, IDC_EDIT_MERGE_DISTANCE, m_iMergeDist);
+	DDX_Text(pDX, IDC_EDIT_VERTICAL_DISTANCE, m_iVDist);
+	DDX_Text(pDX, IDC_EDIT_HORIZONTAL_DISTANCE, m_iHDist);
+	DDX_Control(pDX, IDC_CHECK_HORIZONTAL_COMPARE, m_EnableHorizontalComp);
+	DDX_Control(pDX, IDC_CHECK_DIAGONAL, m_EnableDiagonalComp);
 }
 
 BEGIN_MESSAGE_MAP(CDetectionModuleDlg, CDialog)
@@ -323,9 +333,9 @@ void CDetectionModuleDlg::ApplyParam()
 		m_pParam->m_iMinSize = m_iMinSize;
 		m_pParam->m_iMaxSize = m_iMaxSize;
 		m_pParam->m_iMergeDist = m_iMergeDist;
-		//m_pParam->m_bHoriCompare = m_bHoriCompare;	
-		//m_pParam->m_bHoriCompare = IsDlgButtonChecked(IDC_CHECK_HORIZONTAL_COMPARE);
-		//m_pParam->m_bEnableDiagonal = IsDlgButtonChecked(IDC_CHECK_DIAGONAL);
+		m_pParam->m_bHoriCompare = m_bHoriCompare;	
+		m_pParam->m_bHoriCompare = IsDlgButtonChecked(IDC_CHECK_HORIZONTAL_COMPARE);
+		m_pParam->m_bEnableDiagonal = IsDlgButtonChecked(IDC_CHECK_DIAGONAL);
 
 		m_rtROI.left = m_iROI_Left;
 		m_rtROI.right = m_iROI_Right;
