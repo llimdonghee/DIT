@@ -542,6 +542,8 @@ public:
 
 	void				Inspection(BYTE* pImage, BYTE* pSubtractLowImage, BYTE* pSubtractHighImage, int iWidth, int iHeight);
 
+	int					InspectionProcess();
+
 	int					VerticalInspection(__m256i* pInsp, __m256i* pUp, __m256i* pDown, __m256i xImg, __m256i xUp, __m256i xDown, BOOL bMultiTH,
 											__m256i xZeros, __m256i xOne, __m256i xMask,
 											__m256i xThreshold, __m256i xThresholdH, __m256i xThreshold2, __m256i xThresholdH2,
@@ -558,13 +560,15 @@ public:
 											__m256i &xDifference, __m256i &xDifferenceLow, __m256i &xDifferenceHigh,
 											__m256i &xResult, __m256i &xResultLow, __m256i &xResultHigh);
 
-	int					InspectionProcess();
-
-	BOOL				CellSubMultiInspection(int iFrameNo, int x, int y, __m256i *pInsp, __m256i *xImg, __m256i *pUp, __m256i *xUp, __m256i *pDown, __m256i *xDown, int iDistH, int iDistV,
-						__m256i *xThreshold_UseGrayLow, __m256i *xThreshold_UseGrayHigh, __m256i *xThreshold_UseGray,
-						__m256i *xDifferenceLow, __m256i *xDifferenceHigh, __m256i *xDifference, __m256i *xResultLow, __m256i *xResultHigh, __m256i *xResult, int MAX_RPOCESS_WIDTH_32,
-						int iSubMultiCnt, int *iSubMultiDir, int *iSubMultiFilter, CRect &rtInsp, CRect &rtPreInsp, CRect &rtNextInsp, BOOL bMultiTH,
-						BOOL bEnableDMR, BYTE *pCellMaskROI, BYTE* pPreCellMaskROI, BYTE *pNextCellMaskROI);
+	int					DiagonalInspection(int x, int y, CRect &rtInsp, 
+											__m256i *pInsp, __m256i *pUp, __m256i *pDown, __m256i xImg, __m256i xUp, __m256i xDown, BOOL bMultiTh,
+											__m256i xZeros, __m256i xOne, __m256i xMask,
+											__m256i xThreshold, __m256i xThresholdH, __m256i xThreshold2, __m256i xThresholdH2,
+											__m256i xSlope, __m256i xSlopeLow, __m256i xSlopeHigh,
+											__m256i &xThreshold_UseGray, __m256i &xThreshold_UseGrayLow, __m256i &xThreshold_UseGrayHigh,
+											__m256i &xDifference, __m256i &xDifferenceLow, __m256i &xDifferenceHigh, 
+											__m256i &xResult, __m256i &xResultLow, __m256i &xResultHigh, int MAX_RPOCESS_WIDTH_32,
+											int iDistV, int iDistH, int iSubMultiCnt, int *iSubMultiDir, int *iSubMultiFilter);
 
 	int					ZoneInspection();
 	int					ASGInspection();
@@ -595,8 +599,8 @@ public:
 //	void				DotFilter(EdgeSlopeFilterParam stEdgeSlopeFilter);
 	
 	//Cell Filter
-	BOOL Cell2PixelMergeFilter(int _iCurFrameNo, int _iRef1FrameNo, int _iRef2FrameNo, int _iCurPosX, int _iCurPosY, int _iRef1PosX, int _iRef1PosY, int _iRef2PosX, int _iRef2PosY, int _iThreshold_UseGray, BYTE* Tar, BYTE* Ref1, BYTE* Ref2);
-	BOOL Cell2PixelVertMergeFilter(int _iCurFrameNo, int _iRef1FrameNo, int _iRef2FrameNo, int _iCurPosX, int _iCurPosY, int _iRef1PosX, int _iRef1PosY, int _iRef2PosX, int _iRef2PosY, int _iThreshold_UseGray);
-	BOOL Convolution2x2Filter(int _iCurFrameNo, int _iRef1FrameNo, int _iRef2FrameNo, int _iCurPosX, int _iCurPosY, int _iRef1PosX, int _iRef1PosY, int _iRef2PosX, int _iRef2PosY, int _iThreshold_UseGray, BYTE* Tar, BYTE* Ref1, BYTE* Ref2);
+	BOOL Cell2PixelMergeFilter(int _iCurPosX, int _iCurPosY, int _iRef1PosX, int _iRef1PosY, int _iRef2PosX, int _iRef2PosY, int _iThreshold_UseGray, BYTE* Tar, BYTE* Ref1, BYTE* Ref2);
+	BOOL Cell2PixelVertMergeFilter(int _iCurPosX, int _iCurPosY, int _iRef1PosX, int _iRef1PosY, int _iRef2PosX, int _iRef2PosY, int _iThreshold_UseGray);
+	BOOL Convolution2x2Filter(int _iCurPosX, int _iCurPosY, int _iRef1PosX, int _iRef1PosY, int _iRef2PosX, int _iRef2PosY, int _iThreshold_UseGray, BYTE* Tar, BYTE* Ref1, BYTE* Ref2);
 	int Subtract(int _iGray1, int _iGray2);
 };
