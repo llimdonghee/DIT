@@ -1,0 +1,51 @@
+﻿  GridCell.cpp
+  GridCellBase.cpp
+  GridCtrl.cpp
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\include\gridcontrol\gridctrl.cpp(163): warning C4996: 'GetVersionExA': deprecated로 선언되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\sysinfoapi.h(378): note: 'GetVersionExA' 선언을 참조하십시오.
+  GridDropTarget.cpp
+  GridInPlaceEdit.cpp
+  GridCellCheck.cpp
+  GridCellCombo.cpp
+  GridCellDateTime.cpp
+  GridCellNumeric.cpp
+  GridURLCell.cpp
+  TitleTip.cpp
+  CellCtrl.cpp
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\cellctrl.cpp(38): warning C4311: '형식 캐스트': 'CListSort::CSortItem *'에서 'DWORD'(으)로 포인터가 잘립니다.
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\cellctrl.cpp(38): warning C4302: '형식 캐스트': 'CListSort::CSortItem *'에서 'DWORD'(으)로 잘립니다.
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\cellctrl.cpp(1117): warning C4311: '형식 캐스트': 'CCellCtrl::CCSArray *'에서 'DWORD'(으)로 포인터가 잘립니다.
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\cellctrl.cpp(1117): warning C4302: '형식 캐스트': 'CCellCtrl::CCSArray *'에서 'DWORD'(으)로 잘립니다.
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\cellctrl.cpp(1151): warning C4311: '형식 캐스트': 'CCellCtrl::CCSArray *'에서 'DWORD'(으)로 포인터가 잘립니다.
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\cellctrl.cpp(1151): warning C4302: '형식 캐스트': 'CCellCtrl::CCSArray *'에서 'DWORD'(으)로 잘립니다.
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\cellctrl.cpp(1181): warning C4311: '형식 캐스트': 'CCellCtrl::CCSArray *'에서 'DWORD'(으)로 포인터가 잘립니다.
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\cellctrl.cpp(1181): warning C4302: '형식 캐스트': 'CCellCtrl::CCSArray *'에서 'DWORD'(으)로 잘립니다.
+  ColorButton.cpp
+  CustomList.cpp
+  FontStatic.cpp
+  GradientStatic.cpp
+  HeadCtrl.cpp
+  HMButton.cpp
+  HMControls.cpp
+  HMFolderScheduling.cpp
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\hmfolderscheduling.cpp(223): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  HMJogButton.cpp
+  HMLabel.cpp
+  HMListBoxLog.cpp
+  HMListCtrlExt.cpp
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\hmlistctrlext.cpp(149): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\hmlistctrlext.cpp(162): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\project\sdc_cpjt_aoi64_201216}02_rawfix+signalmerge\ditcore\hmcontrols\hmlistctrlext.cpp(1004): warning C4244: '초기화 중': 'DWORD_PTR'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  InPlaceComboBox.cpp
+  InPlaceEdit.cpp
+  LogCtrl.cpp
+  SortClass.cpp
+  StaticMap.cpp
+  StdAfx.cpp
+  WKButton.cpp
+  XTabCtrl.cpp
+  코드를 생성하고 있습니다...
+     D:\project\SDC_CPJT_AOI64_201216}02_Rawfix+SignalMerge\DitCore\HMControls\/../lib/HMControls_x64_vc15.lib 라이브러리 및 D:\project\SDC_CPJT_AOI64_201216}02_Rawfix+SignalMerge\DitCore\HMControls\/../lib/HMControls_x64_vc15.exp 개체를 생성하고 있습니다.
+  HMControls.vcxproj -> D:\project\SDC_CPJT_AOI64_201216}02_Rawfix+SignalMerge\DitCore\HMControls\\..\bin\HMControls_x64_vc15.dll

@@ -19,6 +19,12 @@
     <Filter Include="헤더 파일\DetectionAlgorithm">
       <UniqueIdentifier>{81c12c25-166a-451f-88b1-67a520bf838e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\GraphView">
+      <UniqueIdentifier>{29223cb0-e629-4c4e-aab4-6a2b270b2bf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GraphView\ControlPack">
+      <UniqueIdentifier>{03d90d65-bf51-48e2-9c01-dcf6fcf2cb66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DetectionModule.h">
@@ -57,6 +63,57 @@
     <ClInclude Include="CommonData.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="GraphView\akWndArrange.h">
+      <Filter>소스 파일\GraphView</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\BGSetDlg.h">
+      <Filter>소스 파일\GraphView</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akButtonColor.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akButtonColorCtrl.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akGroupCtrl.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akGroupDraw.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akMemDC.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akRadio.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akSliderCtrl.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akStaticAOIState.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akStaticGroup.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akStaticText.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\akStaticTextCtrl.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\XIcon.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\ControlPack\XlconRadio.h">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\DlgGraphView.h">
+      <Filter>소스 파일\GraphView</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphView\akGraphAOI.h">
+      <Filter>소스 파일\GraphView</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DetectionModule.cpp">
@@ -79,6 +136,54 @@
     </ClCompile>
     <ClCompile Include="Fileini.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\akWndArrange.cpp">
+      <Filter>소스 파일\GraphView</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\BGSetDlg.cpp">
+      <Filter>소스 파일\GraphView</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\akButtonColor.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\akButtonColorCtrl.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\akGroupCtrl.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\akGroupDraw.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\akRadio.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\akSliderCtrl.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\akStaticAOIState.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\akStaticGroup.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\akStaticText.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\akStaticTextCtrl.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\XIcon.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\ControlPack\XlconRadio.cpp">
+      <Filter>소스 파일\GraphView\ControlPack</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\DlgGraphView.cpp">
+      <Filter>소스 파일\GraphView</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphView\akGraphAOI.cpp">
+      <Filter>소스 파일\GraphView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

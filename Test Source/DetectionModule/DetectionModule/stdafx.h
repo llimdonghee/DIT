@@ -35,7 +35,17 @@
 #include <afxcontrolbars.h>
 #include <afxwin.h>
 #include "CommonData.h"
+//////////////////////////////////////////////////////////////////////////
+#include <gdiplus.h>
+using namespace Gdiplus;
+#pragma comment(lib, "gdiplus")
 
+#include <map>
+#include <vector>
+
+void Delay(DWORD timeout);
+
+//////////////////////////////////////////////////////////////////////////
 #define		CHANNEL_COUNT	4
 #define		ERR_NONE	0
 #define		MAX_VERTEX	4

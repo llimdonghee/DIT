@@ -1,30 +1,12 @@
 ﻿cl : 명령줄 warning D9035: 'Gm' 옵션은 더 이상 사용되지 않으므로 이후 릴리스에서 제거될 예정입니다.
-  DetectionAlgorithm.cpp
+  DlgGraphView.cpp
+  >>Kim Tae Hyun - Graph<< Will automatically link with Graphd_x64_vc15.lib
+  >>Kim Tae Hyun - STL<< Will automatically link with STLd_WS10_x64.lib
 c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(58): warning C4309: '인수': 상수 값이 잘립니다.
 c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(149): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(271): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(272): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(821): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1128): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1124): warning C4101: 'xRight' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1124): warning C4101: 'xLeft' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1343): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1311): warning C4101: 'xTemp2' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1311): warning C4101: 'xTemp1' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1311): warning C4101: 'xTemp' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1314): warning C4101: '_pUp' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1314): warning C4101: '_pDown' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(2049): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(2410): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(3117): warning C4101: 'Line' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(3117): warning C4101: 'Frame' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(3251): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(3750): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(3929): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(4586): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다...
   건너뛰고 있습니다... (관련된 변경 내용 없음)
   ImageWnd.cpp
   DetectionModuleDlg.cpp
   DetectionModule.cpp
-  DetectionModule.vcxproj -> C:\Users\DIT-847\Documents\DIT\Test Source\DetectionModule\x64\Debug\DetectionModule.exe
+  DetectionModule.vcxproj -> C:\Users\DIT-847\Documents\DIT\Test Source\DetectionModule\\bin\DetectionModuled_x64_vc17.exe

@@ -79,6 +79,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\bin\</OutDir>
+    <TargetName>$(ProjectName)d_x64_vc17</TargetName>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -111,18 +114,20 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\opencv\inc;..\ImageStone;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\opencv\inc;..\ImageStone;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MinimalRebuild>true</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>..\opencv\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\opencv\lib;..\lib;..\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName).exe</OutputFile>
+      <AdditionalDependencies>HMControlsd_x64_vc15.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -198,6 +203,23 @@
     <ClInclude Include="DetectionModuleDlg.h" />
     <ClInclude Include="Fileini.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GraphView\akGraphAOI.h" />
+    <ClInclude Include="GraphView\akWndArrange.h" />
+    <ClInclude Include="GraphView\BGSetDlg.h" />
+    <ClInclude Include="GraphView\ControlPack\akButtonColor.h" />
+    <ClInclude Include="GraphView\ControlPack\akButtonColorCtrl.h" />
+    <ClInclude Include="GraphView\ControlPack\akGroupCtrl.h" />
+    <ClInclude Include="GraphView\ControlPack\akGroupDraw.h" />
+    <ClInclude Include="GraphView\ControlPack\akMemDC.h" />
+    <ClInclude Include="GraphView\ControlPack\akRadio.h" />
+    <ClInclude Include="GraphView\ControlPack\akSliderCtrl.h" />
+    <ClInclude Include="GraphView\ControlPack\akStaticAOIState.h" />
+    <ClInclude Include="GraphView\ControlPack\akStaticGroup.h" />
+    <ClInclude Include="GraphView\ControlPack\akStaticText.h" />
+    <ClInclude Include="GraphView\ControlPack\akStaticTextCtrl.h" />
+    <ClInclude Include="GraphView\ControlPack\XIcon.h" />
+    <ClInclude Include="GraphView\ControlPack\XlconRadio.h" />
+    <ClInclude Include="GraphView\DlgGraphView.h" />
     <ClInclude Include="ImageWnd.h" />
     <ClInclude Include="memdc.h" />
     <ClInclude Include="RcTracker.h" />
@@ -210,9 +232,27 @@
     <ClCompile Include="DetectionModule.cpp" />
     <ClCompile Include="DetectionModuleDlg.cpp" />
     <ClCompile Include="Fileini.cpp" />
+    <ClCompile Include="GraphView\akGraphAOI.cpp" />
+    <ClCompile Include="GraphView\akWndArrange.cpp" />
+    <ClCompile Include="GraphView\BGSetDlg.cpp" />
+    <ClCompile Include="GraphView\ControlPack\akButtonColor.cpp" />
+    <ClCompile Include="GraphView\ControlPack\akButtonColorCtrl.cpp" />
+    <ClCompile Include="GraphView\ControlPack\akGroupCtrl.cpp" />
+    <ClCompile Include="GraphView\ControlPack\akGroupDraw.cpp" />
+    <ClCompile Include="GraphView\ControlPack\akRadio.cpp" />
+    <ClCompile Include="GraphView\ControlPack\akSliderCtrl.cpp" />
+    <ClCompile Include="GraphView\ControlPack\akStaticAOIState.cpp" />
+    <ClCompile Include="GraphView\ControlPack\akStaticGroup.cpp" />
+    <ClCompile Include="GraphView\ControlPack\akStaticText.cpp" />
+    <ClCompile Include="GraphView\ControlPack\akStaticTextCtrl.cpp" />
+    <ClCompile Include="GraphView\ControlPack\XIcon.cpp" />
+    <ClCompile Include="GraphView\ControlPack\XlconRadio.cpp" />
+    <ClCompile Include="GraphView\DlgGraphView.cpp" />
     <ClCompile Include="ImageWnd.cpp" />
     <ClCompile Include="RcTracker.cpp" />
-    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DetectionModule.rc" />

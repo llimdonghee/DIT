@@ -248,6 +248,7 @@ public:
 	int			m_iMinSize, m_iMaxSize;
 	int			m_iMergeDist;
 	BOOL		m_bHoriCompare;
+	BOOL		m_bDiagonalCompare;
 	BOOL		m_bCrossCompare;
 	BOOL		m_bAVACompare;
 	BOOL		m_bSlopeFilter;
@@ -265,7 +266,6 @@ public:
 	int			m_iMultiVerPitch;
 
 	BOOL		m_bEnableZone;
-	BOOL		m_bEnableDiagonal;
 	int			m_iZoneThresholdLow[MAX_ZONE_CNT], m_iZoneThresholdHigh[MAX_ZONE_CNT], m_iZoneThresholdLow2[MAX_ZONE_CNT], m_iZoneThresholdHigh2[MAX_ZONE_CNT];
 	int			m_iZoneMinSize[MAX_ZONE_CNT];
 
@@ -567,8 +567,8 @@ public:
 											__m256i xSlope, __m256i xSlopeLow, __m256i xSlopeHigh,
 											__m256i &xThreshold_UseGray, __m256i &xThreshold_UseGrayLow, __m256i &xThreshold_UseGrayHigh,
 											__m256i &xDifference, __m256i &xDifferenceLow, __m256i &xDifferenceHigh, 
-											__m256i &xResult, __m256i &xResultLow, __m256i &xResultHigh, int MAX_RPOCESS_WIDTH_32,
-											int iDistV, int iDistH, int iSubMultiCnt, int *iSubMultiDir, int *iSubMultiFilter);
+											__m256i &xResult, __m256i &xResultLow, __m256i &xResultHigh, 
+											int MAX_RPOCESS_WIDTH_32, int iDistV, int iDistH, int iSubMultiCnt, int *iSubMultiDir, int *iSubMultiFilter);
 
 	int					ZoneInspection();
 	int					ASGInspection();

@@ -5,6 +5,7 @@
 #include "afxdialogex.h"
 
 #include "ImageWnd.h"
+#include "GraphView/DlgGraphView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -22,6 +23,9 @@ CDetectionModuleDlg::CDetectionModuleDlg(CWnd* pParent /*=nullptr*/)
 	m_fZoomRate = 6.0f;
 	m_iplLoadImage = m_iplProcImage = NULL;
 	m_iDefectCount = m_iPixelCount = 0;
+
+	m_pDlgGraphView = NULL;
+
 }
 
 void CDetectionModuleDlg::DoDataExchange(CDataExchange* pDX)
@@ -51,6 +55,7 @@ BEGIN_MESSAGE_MAP(CDetectionModuleDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_INSPECTION, &CDetectionModuleDlg::OnBnClickedButtonInspection)
 	ON_BN_CLICKED(IDC_SET, &CDetectionModuleDlg::OnBnClickedSet)
 	ON_WM_SIZE()
+	ON_WM_DROPFILES()
 END_MESSAGE_MAP()
 
 BOOL CDetectionModuleDlg::OnInitDialog()
@@ -89,8 +94,31 @@ BOOL CDetectionModuleDlg::OnInitDialog()
 	m_pImageWnd->ShowWindow(SW_SHOW);
 	m_pImageWnd->UpdateWindow();
 
+	InitTabControl();
+
 	return TRUE;
 }
+
+void CDetectionModuleDlg::InitTabControl()
+{
+	m_pDlgGraphView = new CDlgGraphView;
+	m_pDlgGraphView->Create(CDlgGraphView::IDD, this);
+	m_pDlgGraphView->SetGraphView(this);
+
+	CRect rtSubTab;
+	GetDlgItem(IDC_STATIC_SUB_TAB)->GetWindowRect(rtSubTab);
+	ScreenToClient(rtSubTab);
+	m_pDlgGraphView->MoveWindow(rtSubTab.left, rtSubTab.top, rtSubTab.Width(), rtSubTab.Height());
+	m_pDlgGraphView->ShowWindow(SW_SHOW);
+}
+
+void CDetectionModuleDlg::SetDialogColor()
+{
+	m_pDlgGraphView->SetBGColor(AOISERVER_BG_COLOR);
+	m_pDlgGraphView->SetCtrlColor(AOISERVER_FONT_COLOR);
+	m_pDlgGraphView->SetBtnColor(AOISERVER_TAB_BTN_COLOR1, AOISERVER_TAB_BTN_COLOR2);
+}
+
 
 void CDetectionModuleDlg::OnBnClickedButtonLoadImage()
 {
@@ -240,6 +268,17 @@ HCURSOR CDetectionModuleDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
+BOOL CDetectionModuleDlg::DestroyWindow()
+{
+	if (m_pDlgGraphView)
+	{
+		m_pDlgGraphView->DestroyWindow();
+		delete m_pDlgGraphView;
+		m_pDlgGraphView = NULL;
+	}
+
+	return CDialog::DestroyWindow();
+}
 
 void CDetectionModuleDlg::ZoomRateValue(float fZoom)
 {
@@ -304,6 +343,7 @@ void CDetectionModuleDlg::LoadParam()
 		m_iMaxSize = m_pParam->m_iMaxSize;
 		m_iMergeDist = m_pParam->m_iMergeDist;
 		m_bHoriCompare = m_pParam->m_bHoriCompare;
+		m_bDiagonalCompare = m_pParam->m_bDiagonalCompare;
 		m_rtROI = m_pParam->m_rtROI;
 
 		m_iROI_Left = m_rtROI.left;
@@ -313,7 +353,6 @@ void CDetectionModuleDlg::LoadParam()
 		m_dFOV = m_pParam->m_fFOV;
 		m_dPixelsize = m_pParam->m_fPixelsize;
 
-		//m_bDiagonal = m_pParam->m_bEnableDiagonal;
 
 		UpdateData(FALSE);
 	}
@@ -333,9 +372,10 @@ void CDetectionModuleDlg::ApplyParam()
 		m_pParam->m_iMinSize = m_iMinSize;
 		m_pParam->m_iMaxSize = m_iMaxSize;
 		m_pParam->m_iMergeDist = m_iMergeDist;
-		m_pParam->m_bHoriCompare = m_bHoriCompare;	
+		m_pParam->m_bHoriCompare = m_bHoriCompare;
+		m_pParam->m_bDiagonalCompare = m_bDiagonalCompare;
 		m_pParam->m_bHoriCompare = IsDlgButtonChecked(IDC_CHECK_HORIZONTAL_COMPARE);
-		m_pParam->m_bEnableDiagonal = IsDlgButtonChecked(IDC_CHECK_DIAGONAL);
+		m_pParam->m_bDiagonalCompare = IsDlgButtonChecked(IDC_CHECK_DIAGONAL);
 
 		m_rtROI.left = m_iROI_Left;
 		m_rtROI.right = m_iROI_Right;
@@ -380,4 +420,102 @@ DWORD WINAPI CDetectionModuleDlg::ThreadProc(__in  LPVOID lpParameter)
 	}
 
 	return 0;
+}
+
+void CDetectionModuleDlg::OnDropFiles(HDROP hDropInfo)
+{
+
+	int nFiles;
+	char szPathName[MAX_PATH];
+	CString strFileName;
+
+	nFiles = ::DragQueryFile(hDropInfo, 0, szPathName, MAX_PATH);
+
+	CString strPath;
+	strPath.Format("%s", szPathName);
+
+	if (strPath.Right(3) == "bmp")
+	{
+		m_strLoadImageFilePath.Format("");
+		LoadFrameImage(strPath);
+		m_strLoadImageFilePath = strPath;
+	}
+	else if (strPath.Right(3) == "txt")
+	{
+		LoadRecipeParameter(strPath);
+		ApplyParam();
+	}
+
+	::DragFinish(hDropInfo);
+
+	CDialog::OnDropFiles(hDropInfo);
+}
+
+CString CDetectionModuleDlg::GetRecipeData(CString strRecipeFileName, CString strStdData, int &nSplitBuffer, int &nLastBuffer)
+{
+	CString line, strFullData;
+	CStdioFile file;
+	int nTemp = 0;
+
+	if (!file.Open((LPCTSTR)(strRecipeFileName), CFile::modeRead | CFile::typeText))
+	{
+		int ErrorNum = ::GetLastError();
+
+		return false;
+	}
+
+	while (NULL != file.ReadString(line))
+	{
+		if (line.GetLength() <= 0)
+			continue;
+		AfxExtractSubString(strFullData, line, 0, '=');
+		strFullData.TrimRight();
+		if (0 == strStdData.Compare(strFullData))
+		{
+			AfxExtractSubString(strFullData, line, 1, '=');
+			nSplitBuffer = strFullData.Find(',', 0);
+			nTemp = strFullData.GetLength();
+			nLastBuffer = nTemp - nSplitBuffer - 1;
+			return strFullData;
+		}
+	}
+	return false;
+}
+
+void CDetectionModuleDlg::LoadRecipeParameter(CString strFileName)
+{
+	CString strTemp;
+	int nSplitBuffer = 0, nLastBuffer = 0;
+	int nThresholdLow = 0, nThresholdHigh = 0, nThreshold2Low = 0, nThreshold2High = 0, nDistV = 0, nDistH = 0, nMinSize = 0, nMaxSize = 9999, nMergeDist = 0;
+	int nEdgeJudgment = 0, nEdgeSlopeTh = 0, nPeriodSlopeTh = 0, nPeriodSlopeJudgment = 0;
+	int nMultiThresholdEnable = 0, nEnableHorComp = 0, nEnableDiagonal = 0;
+	int nEnableEdgeSlope = 0, nEnablePeriodSlope = 0;
+
+	TCHAR buf[1024] = { 0, };
+	GetPrivateProfileString("EQP PARAMETERS", "ScanResolution", "3.5", buf, 1024, strFileName);
+	m_dFOV = (double)_tstof(buf);
+
+	strTemp = GetRecipeData(strFileName, _T("Threshold[0]"), nSplitBuffer, nLastBuffer);
+	nThresholdLow = _ttoi(strTemp.Left(nSplitBuffer));
+	nThresholdHigh = _ttoi(strTemp.Right(nLastBuffer));
+
+	SetDlgItemInt(IDC_EDIT_THRESHOLD_LOW, nThresholdLow);
+	SetDlgItemInt(IDC_EDIT_THRESHOLD_HIGH, nThresholdHigh);
+
+	strTemp = GetRecipeData(strFileName, _T("Threshold2[0]"), nSplitBuffer, nLastBuffer);
+	nThreshold2Low = _ttoi(strTemp.Left(nSplitBuffer));
+	nThreshold2High = _ttoi(strTemp.Right(nLastBuffer));
+
+	SetDlgItemInt(IDC_EDIT_THRESHOLD_LOW2, nThreshold2Low);
+	SetDlgItemInt(IDC_EDIT_THRESHOLD_HIGH2, nThreshold2High);
+
+	strTemp = GetRecipeData(strFileName, _T("Dist[0]"), nSplitBuffer, nLastBuffer);
+	nDistV = _ttoi(strTemp.Left(nSplitBuffer));
+	nDistH = _ttoi(strTemp.Right(nLastBuffer));
+
+	SetDlgItemInt(IDC_EDIT_VERTICAL_DISTANCE, nDistV);
+	SetDlgItemInt(IDC_EDIT_HORIZONTAL_DISTANCE, nDistH);
+
+	nMinSize = GetPrivateProfileInt("CELL PARAMETERS", "MinSize[0]", 0, strFileName);
+	SetDlgItemInt(IDC_EDIT_MIN_SIZE, nMinSize);
 }

@@ -14,6 +14,8 @@
 #include "CommonData.h"
 
 class CImageViewWnd;
+class CDlgGraphView;
+
 class CDetectionModuleDlg : public CDialog
 {
 
@@ -26,12 +28,15 @@ public:
 
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);
+	//virtual void OnInitialUpdate();
 
 protected:
 	HICON m_hIcon;
 
 	// 
 	virtual BOOL OnInitDialog();
+	virtual BOOL DestroyWindow();
+
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
@@ -46,6 +51,8 @@ public:
 	CButton m_EnableDiagonalComp;
 //변수 선언
 public:
+	CDlgGraphView*			m_pDlgGraphView;
+
 	CImageViewWnd*			m_pImageWnd;
 	CStatic					m_ctrlImageView;
 	CParam*					m_pParam;
@@ -66,7 +73,8 @@ public:
 	int m_iROI_Bottom;
 	bool m_bMultiThreshold;
 	int m_iMultiTHGray;
-	bool m_bHoriCompare;
+	BOOL m_bHoriCompare;
+	BOOL m_bDiagonalCompare;
 	int m_iMergeDist;
 	int m_iMinSize;
 	int m_iMaxSize;
@@ -85,7 +93,12 @@ public:
 public:
 	CRect m_rtDisplayRoiCoordinate;
 	BOOL LoadFrameImage(CString strPath);
+	void LoadRecipeParameter(CString strFileName);
+	CString GetRecipeData(CString strRecipeFileName, CString strStdData, int &nSplitBuffer, int &nLastBuffer);
 	void DisplayStatus(CString strText);
+
+	void InitTabControl();
+	void SetDialogColor();
 
 	void ZoomRateValue(float fZoom);
 	void SetRectCoordinate(CRect rect);
@@ -99,4 +112,5 @@ public:
 	void Inspection(int iScanNo, int iFrameNo);
 	static DWORD WINAPI ThreadProc(__in  LPVOID lpParameter);
 
+	afx_msg void OnDropFiles(HDROP hDropInfo);
 };

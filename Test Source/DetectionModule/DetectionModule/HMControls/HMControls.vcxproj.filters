@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{e245cc3a-5993-46eb-b510-556af8f7b974}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{c4e3f9eb-2a04-46d4-a800-922537a7ea62}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{a7c1e5dd-a00b-48d0-ac54-d0a856cb8ac0}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="GridControl">
+      <UniqueIdentifier>{01024789-3ef3-4369-8c81-b6fabe8ef0c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GridControl\CellType">
+      <UniqueIdentifier>{a837fb9f-39e5-4721-95b8-5f07f6f1eb56}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CellCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FontStatic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GradientStatic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HeadCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HMButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HMControls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HMFolderScheduling.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HMJogButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HMLabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HMListBoxLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HMListCtrlExt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InPlaceComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InPlaceEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LogCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SortClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WKButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XTabCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\GridCell.cpp">
+      <Filter>GridControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\GridCellBase.cpp">
+      <Filter>GridControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\GridCtrl.cpp">
+      <Filter>GridControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\GridDropTarget.cpp">
+      <Filter>GridControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\GridInPlaceEdit.cpp">
+      <Filter>GridControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\TitleTip.cpp">
+      <Filter>GridControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\NewCellTypes\GridCellCheck.cpp">
+      <Filter>GridControl\CellType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\NewCellTypes\GridCellCombo.cpp">
+      <Filter>GridControl\CellType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\NewCellTypes\GridCellDateTime.cpp">
+      <Filter>GridControl\CellType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\NewCellTypes\GridCellNumeric.cpp">
+      <Filter>GridControl\CellType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\GridControl\NewCellTypes\GridURLCell.cpp">
+      <Filter>GridControl\CellType</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HMControls.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\HMControls.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="HMControls.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\HMControls\CellCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\ColorButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\CustomList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\FontStatic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\GradientStatic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\HeadCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\HMButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\HMFolderScheduling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\HMJogBtn2Parent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\HMJogButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\HMLabel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\HMListBoxLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\HMListCtrlExt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\InPlaceComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\InPlaceEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\LogCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\SortClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\StaticMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\WKButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\HMControls\XTabCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\CellRange.h">
+      <Filter>GridControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\GridCell.h">
+      <Filter>GridControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\GridCellBase.h">
+      <Filter>GridControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\GridCtrl.h">
+      <Filter>GridControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\GridDropTarget.h">
+      <Filter>GridControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\GridInPlaceEdit.h">
+      <Filter>GridControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\MemDC.h">
+      <Filter>GridControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\TitleTip.h">
+      <Filter>GridControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\NewCellTypes\GridCellCheck.h">
+      <Filter>GridControl\CellType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\NewCellTypes\GridCellCombo.h">
+      <Filter>GridControl\CellType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\NewCellTypes\GridCellDateTime.h">
+      <Filter>GridControl\CellType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\NewCellTypes\GridCellNumeric.h">
+      <Filter>GridControl\CellType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GridControl\NewCellTypes\GridURLCell.h">
+      <Filter>GridControl\CellType</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
