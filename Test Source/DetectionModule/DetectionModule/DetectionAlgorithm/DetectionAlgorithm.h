@@ -538,7 +538,7 @@ public:
 
 	// 작업입니다.
 public:
-	void				Clear() { m_Merge.ResetContiner(); m_DefectFeature->Clear(); }
+	void				Clear() { m_Merge.ResetContiner(); m_DefectFeature->Clear(); m_iDefectCnt = 0; }
 
 	void				Inspection(BYTE* pImage, BYTE* pSubtractLowImage, BYTE* pSubtractHighImage, int iWidth, int iHeight);
 

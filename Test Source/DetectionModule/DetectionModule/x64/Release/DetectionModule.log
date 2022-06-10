@@ -1,24 +1,4 @@
-﻿  DetectionAlgorithm.cpp
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(58): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(149): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(272): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(273): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(827): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1134): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1130): warning C4101: 'xRight' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1130): warning C4101: 'xLeft' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1409): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(1423): warning C4309: 'static_cast': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(2816): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(3177): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(3884): warning C4101: 'Line' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(3884): warning C4101: 'Frame' :참조되지 않은 지역 변수입니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(4018): warning C4309: '인수': 상수 값이 잘립니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(4517): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(4696): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(5353): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.cpp(7312): warning C4309: '인수': 상수 값이 잘립니다.
-  DetectionModule.cpp
+﻿  DetectionModule.cpp
 c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(58): warning C4309: '인수': 상수 값이 잘립니다.
 c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(149): warning C4309: '인수': 상수 값이 잘립니다.
   DetectionModuleDlg.cpp
@@ -52,6 +32,14 @@ c:\users\dit-847\documents\dit\test source\detectionmodule\imagestone\include\co
 c:\users\dit-847\documents\dit\test source\detectionmodule\imagestone\include\imagefile\imagehandle_tga.h(159): warning C4267: '=': 'size_t'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\dit-847\documents\dit\test source\detectionmodule\imagestone\include\imagefile\imagehandle_ipicture.h(49): warning C4312: '형식 캐스트': 'OLE_HANDLE'에서 더 큰 'HGDIOBJ'(으)로의 변환입니다.
 c:\users\dit-847\documents\dit\test source\detectionmodule\imagestone\include\imagefile\imagehandle_ipicture.h(55): warning C4312: '형식 캐스트': 'OLE_HANDLE'에서 더 큰 'HBITMAP'(으)로의 변환입니다.
+  >>Kim Tae Hyun - Graph<< Will automatically link with Graph_x64_vc15.lib
+  >>Kim Tae Hyun - STL<< Will automatically link with STL_WS10_x64.lib
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionmoduledlg.cpp(87): warning C4316: 'CDetectionAlgorithm': 힙에 할당된 개체가 32에 맞추어져 있지 않을 수도 있습니다
+  DlgGraphView.cpp
+  >>Kim Tae Hyun - Graph<< Will automatically link with Graph_x64_vc15.lib
+  >>Kim Tae Hyun - STL<< Will automatically link with STL_WS10_x64.lib
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(58): warning C4309: '인수': 상수 값이 잘립니다.
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(149): warning C4309: '인수': 상수 값이 잘립니다.
   ImageWnd.cpp
 c:\users\dit-847\documents\dit\test source\detectionmodule\imagestone\include\stddefine.h(162): warning C4838: 'LONG'에서 'double'(으)로의 변환에는 축소 변환이 필요합니다.
 c:\users\dit-847\documents\dit\test source\detectionmodule\imagestone\include\imagefile\interface_imagehandlefactory.h(39): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -96,8 +84,8 @@ c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\image
 c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\imagewnd.cpp(1546): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\imagewnd.cpp(1577): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다.
-  5 of 945 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+  0 of 1355 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
-  DetectionModule.vcxproj -> C:\Users\DIT-847\Documents\DIT\Test Source\DetectionModule\x64\Release\DetectionModule.exe
+  DetectionModule.vcxproj -> C:\Users\DIT-847\Documents\DIT\Test Source\DetectionModule\\bin\DetectionModule_x64_vc17.exe

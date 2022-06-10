@@ -48,6 +48,7 @@ public:
 	afx_msg void OnBnClickedButtonLoadImage();
 	afx_msg void OnBnClickedButtonInspection();
 	afx_msg void OnBnClickedSet();
+	afx_msg void OnLvnItemchangedDefectGrid(NMHDR *pNMHDR, LRESULT *pResult);
 
 	CButton m_EnableHorizontalComp;
 	CButton m_EnableDiagonalComp;
@@ -96,9 +97,13 @@ public:
 public:
 	CRect m_rtDisplayRoiCoordinate;
 	BOOL LoadFrameImage(CString strPath);
+	void Clear();
 	void LoadRecipeParameter(CString strFileName);
 	CString GetRecipeData(CString strRecipeFileName, CString strStdData, int &nSplitBuffer, int &nLastBuffer);
+	void DefectMoveToPoint(CPoint ptPos, CSize szSize);
 	void DisplayStatus(CString strText);
+	void ZoomRateValue(float fZoom);
+	void SetRectCoordinate(CRect rect);
 
 	void InitTabControl();
 	void SetDialogColor();
@@ -106,9 +111,6 @@ public:
 	void InitDefectGridControl();
 	void FixDefectGridGrid();
 	void UpdateDefectDataGrid(CDefectFeature* pDefectFeature, int iCnt);
-
-	void ZoomRateValue(float fZoom);
-	void SetRectCoordinate(CRect rect);
 
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 

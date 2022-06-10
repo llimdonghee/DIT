@@ -55,6 +55,7 @@ BEGIN_MESSAGE_MAP(CDetectionModuleDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_LOAD_IMAGE, &CDetectionModuleDlg::OnBnClickedButtonLoadImage)
 	ON_BN_CLICKED(IDC_BUTTON_INSPECTION, &CDetectionModuleDlg::OnBnClickedButtonInspection)
 	ON_BN_CLICKED(IDC_SET, &CDetectionModuleDlg::OnBnClickedSet)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_GRID_1, &CDetectionModuleDlg::OnLvnItemchangedDefectGrid)
 	ON_WM_SIZE()
 	ON_WM_DROPFILES()
 END_MESSAGE_MAP()
@@ -101,6 +102,30 @@ BOOL CDetectionModuleDlg::OnInitDialog()
 	return TRUE;
 }
 
+void CDetectionModuleDlg::Clear()
+{
+	//DestroyWindow();
+	m_DetectionAlgorithm->Clear();
+
+	GV_ITEM Item;
+	CString strValue;
+	Item.mask = GVIF_TEXT;
+
+	CGridCtrl* pGrid = &m_ctrlGrid;
+
+	int i = pGrid->GetFixedRowCount();
+	for (i; i < pGrid->GetRowCount(); i++)
+	{
+		for (int j = pGrid->GetFixedColumnCount(); j < pGrid->GetColumnCount(); j++)
+		{
+			Item.row = i;
+			Item.col = j;
+			Item.strText = "";
+			pGrid->SetItemText(i, j, strValue);
+		}
+	}
+	pGrid->Invalidate(FALSE);
+}
 BOOL CDetectionModuleDlg ::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: Modify the Window class or styles here by modifying
@@ -133,7 +158,7 @@ void CDetectionModuleDlg::InitDefectGridControl()
 	m_ctrlGrid.SetColumnCount(8);			//행 갯수
 	m_ctrlGrid.SetRowCount(MAX_DEFECT_CNT);			//열 갯수
 	m_ctrlGrid.SetFixedRowCount(1);			//윗쪽부터 N열까지 고정 열 설정
-	m_ctrlGrid.SetFixedColumnCount(1);		//왼쪽부터 N행까지 고정 행 설정
+	m_ctrlGrid.SetFixedColumnCount(0);		//왼쪽부터 N행까지 고정 행 설정
 	//m_ctrlGrid.ExpandColumnsToFit();		//열방향 확장하지 않고 고정
 
 	CFont *pFont = m_ctrlGrid.GetFont();
@@ -152,7 +177,7 @@ void CDetectionModuleDlg::InitDefectGridControl()
 	m_ctrlGrid.GetDefaultCell(TRUE, TRUE)->SetFont(&lf);
 
 	m_ctrlGrid.SetEditable(TRUE);			//Grid 내용 수정 가능여부
-	m_ctrlGrid.EnableSelection(TRUE);
+	m_ctrlGrid.EnableSelection(FALSE);
 
 	FixDefectGridGrid();
 }
@@ -300,6 +325,8 @@ void CDetectionModuleDlg::OnBnClickedButtonInspection()
 
 BOOL CDetectionModuleDlg::LoadFrameImage(CString strPath)
 {
+	Clear();
+
 	CFileFind ff;
 	if (ff.FindFile(strPath) == FALSE)
 		return FALSE;
@@ -385,6 +412,7 @@ HCURSOR CDetectionModuleDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
+
 BOOL CDetectionModuleDlg::DestroyWindow()
 {
 	if (m_pDlgGraphView)
@@ -392,6 +420,13 @@ BOOL CDetectionModuleDlg::DestroyWindow()
 		m_pDlgGraphView->DestroyWindow();
 		delete m_pDlgGraphView;
 		m_pDlgGraphView = NULL;
+	}
+
+	if (m_pImageWnd)
+	{
+		m_pImageWnd->DestroyWindow();
+		delete m_pImageWnd;
+		m_pImageWnd = NULL;
 	}
 
 	return CDialog::DestroyWindow();
@@ -540,8 +575,19 @@ DWORD WINAPI CDetectionModuleDlg::ThreadProc(__in  LPVOID lpParameter)
 	return 0;
 }
 
+void CDetectionModuleDlg::DefectMoveToPoint(CPoint ptPos, CSize szSize)
+{
+	if (m_pImageWnd != NULL)
+	{
+		int iMargin = 10;
+
+		m_pImageWnd->MoveToPoint(ptPos, TRUE, TRUE);
+	}
+}
+
 void CDetectionModuleDlg::OnDropFiles(HDROP hDropInfo)
 {
+	Clear();
 
 	int nFiles;
 	char szPathName[MAX_PATH];
@@ -563,10 +609,38 @@ void CDetectionModuleDlg::OnDropFiles(HDROP hDropInfo)
 		LoadRecipeParameter(strPath);
 		ApplyParam();
 	}
+	else
+	{
+		m_DetectionAlgorithm->Clear();
+	}
 
 	::DragFinish(hDropInfo);
 
 	CDialog::OnDropFiles(hDropInfo);
+}
+
+void CDetectionModuleDlg::OnLvnItemchangedDefectGrid(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	int nY = pNMLV->iItem;			// 열 수
+	int nX = pNMLV->iSubItem;		// 행 수
+
+	if (nY > -1 && m_DetectionAlgorithm->m_iDefectCnt > 0)
+	{
+		BOOL bOk = FALSE;
+		CGridCtrl& gridCtrl = m_ctrlGrid;
+		CPoint ptPos;
+		CSize szSize;
+
+		ptPos.x = atoi(gridCtrl.GetItemText(nY, 1));
+		ptPos.y = atoi(gridCtrl.GetItemText(nY, 2));
+		
+		DefectMoveToPoint(ptPos, szSize);
+	}
+
+	*pResult = 0;
 }
 
 CString CDetectionModuleDlg::GetRecipeData(CString strRecipeFileName, CString strStdData, int &nSplitBuffer, int &nLastBuffer)
