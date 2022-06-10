@@ -206,6 +206,11 @@ void CDetectionModuleDlg::UpdateDefectDataGrid(CDefectFeature* pDefectFeature, i
 	int nRow, nCol;
 	int iSubIndex = 0;
 
+	if (iCnt <= 0)
+		m_ctrlGrid_DefectList.SetRowCount(1);	//열 갯수
+	else
+		m_ctrlGrid_DefectList.SetRowCount(iCnt);	//열 갯수
+
 	//////////////////////////////////////////////////////////////////////////
 	// 열 방향 TEXT
 	// 고정 TEXT 기재
@@ -234,10 +239,6 @@ void CDetectionModuleDlg::UpdateDefectDataGrid(CDefectFeature* pDefectFeature, i
 		m_iPixelCount += pDefect->iArea;
 		m_ctrlGrid_DefectList.SetItemText(iIdx, iSubIndex++, str);
 	}
-
-	if (iCnt == 0)
-		iCnt = 1;
-	m_ctrlGrid_DefectList.SetRowCount(iCnt);	//열 갯수
 
 	m_ctrlGrid_DefectList.Invalidate(TRUE);
 }
