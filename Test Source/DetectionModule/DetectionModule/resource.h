@@ -22,21 +22,9 @@
 #define ID_PAN_IMAGE                    1003
 #define ID_NORMALIZE_GRAY               1004
 #define IDC_BUTTON_INSPECTION           2000
-#define IDC_EDIT_ROI_LEFT               2001
-#define IDC_EDIT_ROI_TOP                2002
-#define IDC_EDIT_ROI_RIGHT              2003
-#define IDC_EDIT_ROI_BOTTOM             2004
-#define IDC_SET                         2005
-#define IDC_CHECK_HORIZONTAL_COMPARE    2006
-#define IDC_CHECK_DIAGONAL              2007
-#define IDC_EDIT_THRESHOLD_LOW          3000
-#define IDC_EDIT_THRESHOLD_HIGH         3001
-#define IDC_EDIT_THRESHOLD_LOW2         3002
-#define IDC_EDIT_THRESHOLD_HIGH2        3003
-#define IDC_EDIT_MIN_SIZE               3004
-#define IDC_EDIT_MERGE_DISTANCE         3005
-#define IDC_EDIT_VERTICAL_DISTANCE      3006
-#define IDC_EDIT_HORIZONTAL_DISTANCE    3007
+#define IDC_SET                         2001
+#define IDC_CHECK_HORIZONTAL_COMPARE    2002
+#define IDC_CHECK_DIAGONAL              2003
 
 // Next default values for new objects
 // 

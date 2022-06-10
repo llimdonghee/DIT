@@ -34,6 +34,6 @@ c:\users\dit-847\documents\dit\test source\detectionmodule\imagestone\include\im
 c:\users\dit-847\documents\dit\test source\detectionmodule\imagestone\include\imagefile\imagehandle_ipicture.h(55): warning C4312: '형식 캐스트': 'OLE_HANDLE'에서 더 큰 'HBITMAP'(으)로의 변환입니다.
   >>Kim Tae Hyun - Graph<< Will automatically link with Graphd_x64_vc15.lib
   >>Kim Tae Hyun - STL<< Will automatically link with STLd_WS10_x64.lib
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionmoduledlg.cpp(137): warning C4717: 'CDetectionModuleDlg::PreCreateWindow': 모든 제어 경로에서 재귀적입니다. 함수로 인해 런타임 스택 오버플로가 발생합니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionmoduledlg.cpp(580): warning C4715: 'CDetectionModuleDlg::LoadFrameImage': 모든 제어 경로에서 값을 반환하지는 않습니다.
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionmoduledlg.cpp(125): warning C4717: 'CDetectionModuleDlg::PreCreateWindow': 모든 제어 경로에서 재귀적입니다. 함수로 인해 런타임 스택 오버플로가 발생합니다.
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionmoduledlg.cpp(574): warning C4715: 'CDetectionModuleDlg::LoadFrameImage': 모든 제어 경로에서 값을 반환하지는 않습니다.
   DetectionModule.vcxproj -> C:\Users\DIT-847\Documents\DIT\Test Source\DetectionModule\\bin\DetectionModuled_x64_vc17.exe

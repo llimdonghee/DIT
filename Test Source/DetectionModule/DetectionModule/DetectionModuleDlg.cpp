@@ -32,18 +32,6 @@ void CDetectionModuleDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_STATIC_IMAGE, m_ctrlImageView);
-	DDX_Text(pDX, IDC_EDIT_ROI_LEFT, m_iROI_Left);
-	DDX_Text(pDX, IDC_EDIT_ROI_RIGHT, m_iROI_Right);
-	DDX_Text(pDX, IDC_EDIT_ROI_TOP, m_iROI_Top);
-	DDX_Text(pDX, IDC_EDIT_ROI_BOTTOM, m_iROI_Bottom);
-	DDX_Text(pDX, IDC_EDIT_THRESHOLD_LOW, m_iThresholdLow);
-	DDX_Text(pDX, IDC_EDIT_THRESHOLD_HIGH, m_iThresholdHigh);
-	DDX_Text(pDX, IDC_EDIT_THRESHOLD_LOW2, m_iThresholdLow2);
-	DDX_Text(pDX, IDC_EDIT_THRESHOLD_HIGH2, m_iThresholdHigh2);
-	DDX_Text(pDX, IDC_EDIT_MIN_SIZE, m_iMinSize);
-	DDX_Text(pDX, IDC_EDIT_MERGE_DISTANCE, m_iMergeDist);
-	DDX_Text(pDX, IDC_EDIT_VERTICAL_DISTANCE, m_iVDist);
-	DDX_Text(pDX, IDC_EDIT_HORIZONTAL_DISTANCE, m_iHDist);
 	DDX_Control(pDX, IDC_CHECK_HORIZONTAL_COMPARE, m_EnableHorizontalComp);
 	DDX_Control(pDX, IDC_CHECK_DIAGONAL, m_EnableDiagonalComp);
 	DDX_Control(pDX, IDC_GRID_DEFECTLIST, m_ctrlGrid_DefectList);
@@ -158,7 +146,7 @@ void CDetectionModuleDlg::InitDefectGridControl()
 	m_ctrlGrid_DefectList.SetGridLines(GVL_BOTH);		//행, 열 확장시 스크롤 생성
 
 	m_ctrlGrid_DefectList.SetColumnCount(8);			//행 갯수
-	m_ctrlGrid_DefectList.SetRowCount(MAX_DEFECT_CNT);			//열 갯수
+	m_ctrlGrid_DefectList.SetRowCount(MAX_DEFECT_CNT);	//열 갯수
 	m_ctrlGrid_DefectList.SetFixedRowCount(1);			//윗쪽부터 N열까지 고정 열 설정
 	m_ctrlGrid_DefectList.SetFixedColumnCount(0);		//왼쪽부터 N행까지 고정 행 설정
 	//m_ctrlGrid_DefectList.ExpandColumnsToFit();		//열방향 확장하지 않고 고정
@@ -217,6 +205,7 @@ void CDetectionModuleDlg::UpdateDefectDataGrid(CDefectFeature* pDefectFeature, i
 	CString str;
 	int nRow, nCol;
 	int iSubIndex = 0;
+
 	//////////////////////////////////////////////////////////////////////////
 	// 열 방향 TEXT
 	// 고정 TEXT 기재
@@ -246,7 +235,11 @@ void CDetectionModuleDlg::UpdateDefectDataGrid(CDefectFeature* pDefectFeature, i
 		m_ctrlGrid_DefectList.SetItemText(iIdx, iSubIndex++, str);
 	}
 
-	m_ctrlGrid_DefectList.Invalidate(FALSE);
+	if (iCnt == 0)
+		iCnt = 1;
+	m_ctrlGrid_DefectList.SetRowCount(iCnt);	//열 갯수
+
+	m_ctrlGrid_DefectList.Invalidate(TRUE);
 }
 
 void CDetectionModuleDlg::InitConditionGridControl()
@@ -491,6 +484,8 @@ void CDetectionModuleDlg::OnBnClickedButtonInspection()
 		return;
 	}
 
+	Clear();
+
 	/*if (m_bImageProcessing == TRUE)
 	{
 		CString str;
@@ -501,7 +496,6 @@ void CDetectionModuleDlg::OnBnClickedButtonInspection()
 
 	m_pImageWnd->ResetImage();
 	m_DetectionAlgorithm->Clear();
-	//m_ctrlDefectList.DeleteAllItems();
 	m_iDefectCount = 0;
 	m_iPixelCount = 0;
 
@@ -642,11 +636,6 @@ void CDetectionModuleDlg::SetRectCoordinate(CRect rect)
 	m_rtDisplayRoiCoordinate.right = rect.right;
 	m_rtDisplayRoiCoordinate.top = rect.top;
 	m_rtDisplayRoiCoordinate.bottom = rect.bottom;
-
-	SetDlgItemInt(IDC_EDIT_ROI_LEFT, m_rtDisplayRoiCoordinate.left);
-	SetDlgItemInt(IDC_EDIT_ROI_RIGHT, m_rtDisplayRoiCoordinate.right);
-	SetDlgItemInt(IDC_EDIT_ROI_TOP, m_rtDisplayRoiCoordinate.top);
-	SetDlgItemInt(IDC_EDIT_ROI_BOTTOM, m_rtDisplayRoiCoordinate.bottom);
 
 	m_iROI_Left = m_rtDisplayRoiCoordinate.left;
 	m_iROI_Right = m_rtDisplayRoiCoordinate.right;
@@ -889,23 +878,13 @@ void CDetectionModuleDlg::LoadRecipeParameter(CString strFileName)
 	nThresholdLow = _ttoi(strTemp.Left(nSplitBuffer));
 	nThresholdHigh = _ttoi(strTemp.Right(nLastBuffer));
 
-	SetDlgItemInt(IDC_EDIT_THRESHOLD_LOW, nThresholdLow);
-	SetDlgItemInt(IDC_EDIT_THRESHOLD_HIGH, nThresholdHigh);
-
 	strTemp = GetRecipeData(strFileName, _T("Threshold2[0]"), nSplitBuffer, nLastBuffer);
 	nThreshold2Low = _ttoi(strTemp.Left(nSplitBuffer));
 	nThreshold2High = _ttoi(strTemp.Right(nLastBuffer));
-
-	SetDlgItemInt(IDC_EDIT_THRESHOLD_LOW2, nThreshold2Low);
-	SetDlgItemInt(IDC_EDIT_THRESHOLD_HIGH2, nThreshold2High);
 
 	strTemp = GetRecipeData(strFileName, _T("Dist[0]"), nSplitBuffer, nLastBuffer);
 	nDistV = _ttoi(strTemp.Left(nSplitBuffer));
 	nDistH = _ttoi(strTemp.Right(nLastBuffer));
 
-	SetDlgItemInt(IDC_EDIT_VERTICAL_DISTANCE, nDistV);
-	SetDlgItemInt(IDC_EDIT_HORIZONTAL_DISTANCE, nDistH);
-
 	nMinSize = GetPrivateProfileInt("CELL PARAMETERS", "MinSize[0]", 0, strFileName);
-	SetDlgItemInt(IDC_EDIT_MIN_SIZE, nMinSize);
 }
