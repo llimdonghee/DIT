@@ -55,7 +55,8 @@ public:
 //변수 선언
 public:
 	CDlgGraphView*			m_pDlgGraphView;
-	CGridCtrl				m_ctrlGrid;
+	CGridCtrl				m_ctrlGrid_DefectList;
+	CGridCtrl				m_ctrlGrid_Condition;
 
 	CImageViewWnd*			m_pImageWnd;
 	CStatic					m_ctrlImageView;
@@ -109,8 +110,11 @@ public:
 	void SetDialogColor();
 
 	void InitDefectGridControl();
-	void FixDefectGridGrid();
+	void FixDefectListGrid();
 	void UpdateDefectDataGrid(CDefectFeature* pDefectFeature, int iCnt);
+
+	void InitConditionGridControl();
+	void FixConditionGrid();
 
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 
@@ -118,6 +122,9 @@ public:
 public:
 	void LoadParam();
 	void ApplyParam();
+
+	void GetGridParam();
+	void SetGridParam();
 	void Inspection(int iScanNo, int iFrameNo);
 	static DWORD WINAPI ThreadProc(__in  LPVOID lpParameter);
 

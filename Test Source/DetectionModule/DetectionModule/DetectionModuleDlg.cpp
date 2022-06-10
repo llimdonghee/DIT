@@ -25,7 +25,7 @@ CDetectionModuleDlg::CDetectionModuleDlg(CWnd* pParent /*=nullptr*/)
 	m_iDefectCount = m_iPixelCount = 0;
 
 	m_pDlgGraphView = NULL;
-	m_ctrlGrid.DeleteAllItems();
+	m_ctrlGrid_DefectList.DeleteAllItems();
 }
 
 void CDetectionModuleDlg::DoDataExchange(CDataExchange* pDX)
@@ -46,7 +46,8 @@ void CDetectionModuleDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_HORIZONTAL_DISTANCE, m_iHDist);
 	DDX_Control(pDX, IDC_CHECK_HORIZONTAL_COMPARE, m_EnableHorizontalComp);
 	DDX_Control(pDX, IDC_CHECK_DIAGONAL, m_EnableDiagonalComp);
-	DDX_Control(pDX, IDC_GRID_1, m_ctrlGrid);
+	DDX_Control(pDX, IDC_GRID_DEFECTLIST, m_ctrlGrid_DefectList);
+	DDX_Control(pDX, IDC_GRID_CONDITION, m_ctrlGrid_Condition);
 }
 
 BEGIN_MESSAGE_MAP(CDetectionModuleDlg, CDialog)
@@ -55,7 +56,7 @@ BEGIN_MESSAGE_MAP(CDetectionModuleDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_LOAD_IMAGE, &CDetectionModuleDlg::OnBnClickedButtonLoadImage)
 	ON_BN_CLICKED(IDC_BUTTON_INSPECTION, &CDetectionModuleDlg::OnBnClickedButtonInspection)
 	ON_BN_CLICKED(IDC_SET, &CDetectionModuleDlg::OnBnClickedSet)
-	ON_NOTIFY(LVN_ITEMCHANGED, IDC_GRID_1, &CDetectionModuleDlg::OnLvnItemchangedDefectGrid)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_GRID_DEFECTLIST, &CDetectionModuleDlg::OnLvnItemchangedDefectGrid)
 	ON_WM_SIZE()
 	ON_WM_DROPFILES()
 END_MESSAGE_MAP()
@@ -98,7 +99,8 @@ BOOL CDetectionModuleDlg::OnInitDialog()
 
 	InitTabControl();
 	InitDefectGridControl();
-
+	InitConditionGridControl();
+	GetGridParam();
 	return TRUE;
 }
 
@@ -111,7 +113,7 @@ void CDetectionModuleDlg::Clear()
 	CString strValue;
 	Item.mask = GVIF_TEXT;
 
-	CGridCtrl* pGrid = &m_ctrlGrid;
+	CGridCtrl* pGrid = &m_ctrlGrid_DefectList;
 
 	int i = pGrid->GetFixedRowCount();
 	for (i; i < pGrid->GetRowCount(); i++)
@@ -149,19 +151,19 @@ void CDetectionModuleDlg::InitTabControl()
 
 void CDetectionModuleDlg::InitDefectGridControl()
 {
-	m_ctrlGrid.GetDefaultCell(FALSE, FALSE)->SetBackClr(GRID_COLOR);
-	m_ctrlGrid.SetFixedBkColor(GRID_FIX_COLOR);
-	m_ctrlGrid.SetFixedTextColor(GRID_TEXT_COLOR);
-	m_ctrlGrid.SetGridLineColor(GRID_LINE_COLOR);
-	m_ctrlGrid.SetGridLines(GVL_BOTH);		//행, 열 확장시 스크롤 생성
+	m_ctrlGrid_DefectList.GetDefaultCell(FALSE, FALSE)->SetBackClr(GRID_COLOR);
+	m_ctrlGrid_DefectList.SetFixedBkColor(GRID_FIX_COLOR);
+	m_ctrlGrid_DefectList.SetFixedTextColor(GRID_TEXT_COLOR);
+	m_ctrlGrid_DefectList.SetGridLineColor(GRID_LINE_COLOR);
+	m_ctrlGrid_DefectList.SetGridLines(GVL_BOTH);		//행, 열 확장시 스크롤 생성
 
-	m_ctrlGrid.SetColumnCount(8);			//행 갯수
-	m_ctrlGrid.SetRowCount(MAX_DEFECT_CNT);			//열 갯수
-	m_ctrlGrid.SetFixedRowCount(1);			//윗쪽부터 N열까지 고정 열 설정
-	m_ctrlGrid.SetFixedColumnCount(0);		//왼쪽부터 N행까지 고정 행 설정
-	//m_ctrlGrid.ExpandColumnsToFit();		//열방향 확장하지 않고 고정
+	m_ctrlGrid_DefectList.SetColumnCount(8);			//행 갯수
+	m_ctrlGrid_DefectList.SetRowCount(MAX_DEFECT_CNT);			//열 갯수
+	m_ctrlGrid_DefectList.SetFixedRowCount(1);			//윗쪽부터 N열까지 고정 열 설정
+	m_ctrlGrid_DefectList.SetFixedColumnCount(0);		//왼쪽부터 N행까지 고정 행 설정
+	//m_ctrlGrid_DefectList.ExpandColumnsToFit();		//열방향 확장하지 않고 고정
 
-	CFont *pFont = m_ctrlGrid.GetFont();
+	CFont *pFont = m_ctrlGrid_DefectList.GetFont();
 	if (!pFont)
 		return;
 
@@ -172,17 +174,17 @@ void CDetectionModuleDlg::InitDefectGridControl()
 	lf.lfWeight = FW_NORMAL;
 	strcpy_s(lf.lfFaceName, _T("Arial"));
 
-	m_ctrlGrid.GetDefaultCell(TRUE, FALSE)->SetFont(&lf);
-	m_ctrlGrid.GetDefaultCell(FALSE, TRUE)->SetFont(&lf);
-	m_ctrlGrid.GetDefaultCell(TRUE, TRUE)->SetFont(&lf);
+	m_ctrlGrid_DefectList.GetDefaultCell(TRUE, FALSE)->SetFont(&lf);
+	m_ctrlGrid_DefectList.GetDefaultCell(FALSE, TRUE)->SetFont(&lf);
+	m_ctrlGrid_DefectList.GetDefaultCell(TRUE, TRUE)->SetFont(&lf);
 
-	m_ctrlGrid.SetEditable(TRUE);			//Grid 내용 수정 가능여부
-	m_ctrlGrid.EnableSelection(FALSE);
+	m_ctrlGrid_DefectList.SetEditable(TRUE);			//Grid 내용 수정 가능여부
+	m_ctrlGrid_DefectList.EnableSelection(FALSE);
 
-	FixDefectGridGrid();
+	FixDefectListGrid();
 }
 
-void CDetectionModuleDlg::FixDefectGridGrid()
+void CDetectionModuleDlg::FixDefectListGrid()
 {
 	CString str;
 	int nRow, nCol;
@@ -196,28 +198,20 @@ void CDetectionModuleDlg::FixDefectGridGrid()
 	Item.row = nRow;
 	Item.col = nCol++;
 	Item.strText = "Num";
-	m_ctrlGrid.SetItem(&Item);
+	m_ctrlGrid_DefectList.SetItem(&Item);
 	Item.col = nCol++;
 	Item.strText = "x";
-	m_ctrlGrid.SetItem(&Item);
+	m_ctrlGrid_DefectList.SetItem(&Item);
 	Item.col = nCol++;
 	Item.strText = "y";
-	m_ctrlGrid.SetItem(&Item);
+	m_ctrlGrid_DefectList.SetItem(&Item);
 	Item.col = nCol++;
 	Item.strText = "Area";
-	m_ctrlGrid.SetItem(&Item);
+	m_ctrlGrid_DefectList.SetItem(&Item);
 
-	//m_ctrlGrid.ExpandRowsToFit(); //쓰지않음
-
-	//////////////////////////////////////////////////////////////////////////
-	// 열 방향 TEXT
-	// 고정 TEXT 기재
-	/*nCol = 0;
-	nRow = 1;			//Data Set하려는 시작지점
-	str.Format("1");	//Data 읽어서 뿌리기
-	m_ctrlGrid.SetItemText(nRow++, nCol, str);*/
-
+	//m_ctrlGrid_DefectList.ExpandRowsToFit(); //쓰지않음
 }
+
 void CDetectionModuleDlg::UpdateDefectDataGrid(CDefectFeature* pDefectFeature, int iCnt)
 {
 	CString str;
@@ -237,22 +231,226 @@ void CDetectionModuleDlg::UpdateDefectDataGrid(CDefectFeature* pDefectFeature, i
 			continue;
 
 		str.Format("%d", iIdx);	//Data 읽어서 뿌리기
-		m_ctrlGrid.SetItemText(iIdx, nRow, str);
+		m_ctrlGrid_DefectList.SetItemText(iIdx, nRow, str);
 
 		iSubIndex = 1;
 
 		str.Format("%d", pDefect->iCenterx);
-		m_ctrlGrid.SetItemText(iIdx, iSubIndex++, str);
+		m_ctrlGrid_DefectList.SetItemText(iIdx, iSubIndex++, str);
 
 		str.Format("%d", pDefect->iCentery);
-		m_ctrlGrid.SetItemText(iIdx, iSubIndex++, str);
+		m_ctrlGrid_DefectList.SetItemText(iIdx, iSubIndex++, str);
 
 		str.Format("%d", pDefect->iArea);
 		m_iPixelCount += pDefect->iArea;
-		m_ctrlGrid.SetItemText(iIdx, iSubIndex++, str);
+		m_ctrlGrid_DefectList.SetItemText(iIdx, iSubIndex++, str);
 	}
 
-	m_ctrlGrid.Invalidate(FALSE);
+	m_ctrlGrid_DefectList.Invalidate(FALSE);
+}
+
+void CDetectionModuleDlg::InitConditionGridControl()
+{
+	m_ctrlGrid_Condition.GetDefaultCell(FALSE, FALSE)->SetBackClr(GRID_COLOR);
+	m_ctrlGrid_Condition.SetFixedBkColor(GRID_FIX_COLOR);
+	m_ctrlGrid_Condition.SetFixedTextColor(GRID_TEXT_COLOR);
+	m_ctrlGrid_Condition.SetGridLineColor(GRID_LINE_COLOR);
+	m_ctrlGrid_Condition.SetGridLines(GVL_BOTH);		//행, 열 확장시 스크롤 생성
+
+	m_ctrlGrid_Condition.SetColumnCount(3);				//행 갯수
+	m_ctrlGrid_Condition.SetRowCount(8);				//열 갯수
+	m_ctrlGrid_Condition.SetFixedRowCount(1);			//윗쪽부터 N열까지 고정 열 설정
+	m_ctrlGrid_Condition.SetFixedColumnCount(1);		//왼쪽부터 N행까지 고정 행 설정
+	m_ctrlGrid_DefectList.ExpandColumnsToFit();			//열방향 확장하지 않고 고정
+	//m_ctrlGrid_DefectList.ExpandRowsToFit();			//행방향 확장하지 않고 고정
+
+	CFont *pFont = m_ctrlGrid_Condition.GetFont();
+	if (!pFont)
+		return;
+
+	LOGFONT lf;
+	pFont->GetLogFont(&lf);
+	lf.lfItalic = 0;
+	lf.lfHeight = 15;
+	lf.lfWeight = FW_NORMAL;
+	strcpy_s(lf.lfFaceName, _T("Arial"));
+
+	m_ctrlGrid_Condition.GetDefaultCell(TRUE, FALSE)->SetFont(&lf);
+	m_ctrlGrid_Condition.GetDefaultCell(FALSE, TRUE)->SetFont(&lf);
+	m_ctrlGrid_Condition.GetDefaultCell(TRUE, TRUE)->SetFont(&lf);
+
+	m_ctrlGrid_Condition.SetEditable(TRUE);			//Grid 내용 수정 가능여부
+	m_ctrlGrid_Condition.EnableSelection(TRUE);
+
+	FixConditionGrid();
+}
+
+void CDetectionModuleDlg::FixConditionGrid()
+{
+	CString str;
+	int nRow, nCol;
+	GV_ITEM Item;
+
+	//////////////////////////////////////////////////////////////////////////
+	// 행 방향 TEXT
+	nRow = nCol = 0;
+	Item.mask = GVIF_TEXT;
+	Item.row = nRow++;
+	Item.col = nCol;
+	Item.strText = "";
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.row = nRow++;
+	Item.strText = "Horizontal";
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.row = nRow++;
+	Item.strText = "Vertical";
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.row = nRow++;
+	Item.strText = "Distance";
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.row = nRow++;
+	Item.strText = "Threshold";
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.row = nRow++;
+	Item.strText = "Threshold2";
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.row = nRow++;
+	Item.strText = "Min Size";
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.row = nRow++;
+	Item.strText = "Merge Dist";
+	m_ctrlGrid_Condition.SetItem(&Item);
+	//m_ctrlGrid_DefectList.ExpandRowsToFit(); //쓰지않음
+
+	//////////////////////////////////////////////////////////////////////////
+	// 열 방향 TEXT
+	nRow = 0;
+	Item.row = nRow;
+	Item.col = nCol++;
+	Item.strText = "";
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.col = nCol++;
+	Item.strText = "1";
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.col = nCol++;
+	Item.strText = "2";
+	m_ctrlGrid_Condition.SetItem(&Item);
+}
+
+void CDetectionModuleDlg::SetGridParam()
+{
+	CString str;
+	int nRow, nCol;
+	GV_ITEM Item;
+	CGridCtrl* gridCtrl = &m_ctrlGrid_Condition;
+	//////////////////////////////////////////////////////////////////////////
+	nRow = nCol = 1;
+	Item.mask = GVIF_TEXT;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	m_iROI_Left = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+	Item.col = nCol++;
+	m_iROI_Right = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+
+	nCol = 1;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	m_iROI_Top = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+	Item.col = nCol++;
+	m_iROI_Bottom = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+
+	nCol = 1;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	m_iVDist = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+	Item.col = nCol++;
+	m_iHDist = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+
+	nCol = 1;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	m_iThresholdLow = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+	Item.col = nCol++;
+	m_iThresholdHigh = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+
+	nCol = 1;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	m_iThresholdLow2 = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+	Item.col = nCol++;
+	m_iThresholdHigh2 = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+
+	nCol = 1;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	m_iMinSize = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+	Item.row = nRow++;
+	m_iMergeDist = atoi(gridCtrl->GetItemText(Item.row, Item.col));
+	//////////////////////////////////////////////////////////////////////////
+}
+
+void CDetectionModuleDlg::GetGridParam()
+{
+	CString str;
+	int nRow, nCol;
+	GV_ITEM Item;
+
+	//////////////////////////////////////////////////////////////////////////
+	nRow = nCol = 1;
+	Item.mask = GVIF_TEXT;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iROI_Left);
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iROI_Right);
+	m_ctrlGrid_Condition.SetItem(&Item);
+	
+	nCol = 1;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iROI_Top);
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iROI_Bottom);
+	m_ctrlGrid_Condition.SetItem(&Item);
+
+	nCol = 1;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iVDist);
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iHDist);
+	m_ctrlGrid_Condition.SetItem(&Item);
+	
+	nCol = 1;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iThresholdLow);
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iThresholdHigh);
+	m_ctrlGrid_Condition.SetItem(&Item);
+
+	nCol = 1;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iThresholdLow2);
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iThresholdHigh2);
+	m_ctrlGrid_Condition.SetItem(&Item);
+
+	nCol = 1;
+	Item.row = nRow++;
+	Item.col = nCol++;
+	Item.strText.Format("%d", m_iMinSize);
+	m_ctrlGrid_Condition.SetItem(&Item);
+	Item.row = nRow++;
+	Item.strText.Format("%d", m_iMergeDist);
+	m_ctrlGrid_Condition.SetItem(&Item);
+	//////////////////////////////////////////////////////////////////////////
 }
 
 void CDetectionModuleDlg::SetDialogColor()
@@ -279,6 +477,7 @@ void CDetectionModuleDlg::OnBnClickedButtonLoadImage()
 
 void CDetectionModuleDlg::OnBnClickedSet()
 {
+	SetGridParam();
 	ApplyParam();
 }
 
@@ -505,7 +704,6 @@ void CDetectionModuleDlg::LoadParam()
 		m_dFOV = m_pParam->m_fFOV;
 		m_dPixelsize = m_pParam->m_fPixelsize;
 
-
 		UpdateData(FALSE);
 	}
 }
@@ -514,7 +712,7 @@ void CDetectionModuleDlg::ApplyParam()
 {
 	if (m_pParam != NULL)
 	{
-		UpdateData(TRUE);
+		UpdateData(FALSE);
 
 		m_pParam->m_iVDist = m_iVDist, m_pParam->m_iHDist = m_iHDist;
 		//m_pParam->m_bMultiThreshold = m_bMultiThreshold = m_EnableMultiThresholdCheckBox.GetCheck();
@@ -630,7 +828,7 @@ void CDetectionModuleDlg::OnLvnItemchangedDefectGrid(NMHDR *pNMHDR, LRESULT *pRe
 	if (nY > -1 && m_DetectionAlgorithm->m_iDefectCnt > 0)
 	{
 		BOOL bOk = FALSE;
-		CGridCtrl& gridCtrl = m_ctrlGrid;
+		CGridCtrl& gridCtrl = m_ctrlGrid_DefectList;
 		CPoint ptPos;
 		CSize szSize;
 
