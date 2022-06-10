@@ -10,6 +10,7 @@
 
 #include "afxwin.h"
 
+#include "Grid/GridCtrl.h"
 #include "DetectionAlgorithm/DetectionAlgorithm.h"
 #include "CommonData.h"
 
@@ -36,6 +37,7 @@ protected:
 	// 
 	virtual BOOL OnInitDialog();
 	virtual BOOL DestroyWindow();
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
@@ -52,6 +54,7 @@ public:
 //변수 선언
 public:
 	CDlgGraphView*			m_pDlgGraphView;
+	CGridCtrl				m_ctrlGrid;
 
 	CImageViewWnd*			m_pImageWnd;
 	CStatic					m_ctrlImageView;
@@ -99,6 +102,10 @@ public:
 
 	void InitTabControl();
 	void SetDialogColor();
+
+	void InitDefectGridControl();
+	void FixDefectGridGrid();
+	void UpdateDefectDataGrid(CDefectFeature* pDefectFeature, int iCnt);
 
 	void ZoomRateValue(float fZoom);
 	void SetRectCoordinate(CRect rect);

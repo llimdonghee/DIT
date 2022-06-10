@@ -25,7 +25,7 @@ CDetectionModuleDlg::CDetectionModuleDlg(CWnd* pParent /*=nullptr*/)
 	m_iDefectCount = m_iPixelCount = 0;
 
 	m_pDlgGraphView = NULL;
-
+	m_ctrlGrid.DeleteAllItems();
 }
 
 void CDetectionModuleDlg::DoDataExchange(CDataExchange* pDX)
@@ -46,6 +46,7 @@ void CDetectionModuleDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_HORIZONTAL_DISTANCE, m_iHDist);
 	DDX_Control(pDX, IDC_CHECK_HORIZONTAL_COMPARE, m_EnableHorizontalComp);
 	DDX_Control(pDX, IDC_CHECK_DIAGONAL, m_EnableDiagonalComp);
+	DDX_Control(pDX, IDC_GRID_1, m_ctrlGrid);
 }
 
 BEGIN_MESSAGE_MAP(CDetectionModuleDlg, CDialog)
@@ -95,8 +96,17 @@ BOOL CDetectionModuleDlg::OnInitDialog()
 	m_pImageWnd->UpdateWindow();
 
 	InitTabControl();
+	InitDefectGridControl();
 
 	return TRUE;
+}
+
+BOOL CDetectionModuleDlg ::PreCreateWindow(CREATESTRUCT& cs)
+{
+	// TODO: Modify the Window class or styles here by modifying
+	//  the CREATESTRUCT cs
+
+	return CDetectionModuleDlg::PreCreateWindow(cs);
 }
 
 void CDetectionModuleDlg::InitTabControl()
@@ -112,13 +122,120 @@ void CDetectionModuleDlg::InitTabControl()
 	m_pDlgGraphView->ShowWindow(SW_SHOW);
 }
 
-void CDetectionModuleDlg::SetDialogColor()
+void CDetectionModuleDlg::InitDefectGridControl()
 {
-	m_pDlgGraphView->SetBGColor(AOISERVER_BG_COLOR);
-	m_pDlgGraphView->SetCtrlColor(AOISERVER_FONT_COLOR);
-	m_pDlgGraphView->SetBtnColor(AOISERVER_TAB_BTN_COLOR1, AOISERVER_TAB_BTN_COLOR2);
+	m_ctrlGrid.GetDefaultCell(FALSE, FALSE)->SetBackClr(GRID_COLOR);
+	m_ctrlGrid.SetFixedBkColor(GRID_FIX_COLOR);
+	m_ctrlGrid.SetFixedTextColor(GRID_TEXT_COLOR);
+	m_ctrlGrid.SetGridLineColor(GRID_LINE_COLOR);
+	m_ctrlGrid.SetGridLines(GVL_BOTH);		//행, 열 확장시 스크롤 생성
+
+	m_ctrlGrid.SetColumnCount(8);			//행 갯수
+	m_ctrlGrid.SetRowCount(MAX_DEFECT_CNT);			//열 갯수
+	m_ctrlGrid.SetFixedRowCount(1);			//윗쪽부터 N열까지 고정 열 설정
+	m_ctrlGrid.SetFixedColumnCount(1);		//왼쪽부터 N행까지 고정 행 설정
+	//m_ctrlGrid.ExpandColumnsToFit();		//열방향 확장하지 않고 고정
+
+	CFont *pFont = m_ctrlGrid.GetFont();
+	if (!pFont)
+		return;
+
+	LOGFONT lf;
+	pFont->GetLogFont(&lf);
+	lf.lfItalic = 0;
+	lf.lfHeight = 15;
+	lf.lfWeight = FW_NORMAL;
+	strcpy_s(lf.lfFaceName, _T("Arial"));
+
+	m_ctrlGrid.GetDefaultCell(TRUE, FALSE)->SetFont(&lf);
+	m_ctrlGrid.GetDefaultCell(FALSE, TRUE)->SetFont(&lf);
+	m_ctrlGrid.GetDefaultCell(TRUE, TRUE)->SetFont(&lf);
+
+	m_ctrlGrid.SetEditable(TRUE);			//Grid 내용 수정 가능여부
+	m_ctrlGrid.EnableSelection(TRUE);
+
+	FixDefectGridGrid();
 }
 
+void CDetectionModuleDlg::FixDefectGridGrid()
+{
+	CString str;
+	int nRow, nCol;
+	GV_ITEM Item;
+
+	//////////////////////////////////////////////////////////////////////////
+	// 행 방향 TEXT
+	nRow = nCol = 0;
+
+	Item.mask = GVIF_TEXT;
+	Item.row = nRow;
+	Item.col = nCol++;
+	Item.strText = "Num";
+	m_ctrlGrid.SetItem(&Item);
+	Item.col = nCol++;
+	Item.strText = "x";
+	m_ctrlGrid.SetItem(&Item);
+	Item.col = nCol++;
+	Item.strText = "y";
+	m_ctrlGrid.SetItem(&Item);
+	Item.col = nCol++;
+	Item.strText = "Area";
+	m_ctrlGrid.SetItem(&Item);
+
+	//m_ctrlGrid.ExpandRowsToFit(); //쓰지않음
+
+	//////////////////////////////////////////////////////////////////////////
+	// 열 방향 TEXT
+	// 고정 TEXT 기재
+	/*nCol = 0;
+	nRow = 1;			//Data Set하려는 시작지점
+	str.Format("1");	//Data 읽어서 뿌리기
+	m_ctrlGrid.SetItemText(nRow++, nCol, str);*/
+
+}
+void CDetectionModuleDlg::UpdateDefectDataGrid(CDefectFeature* pDefectFeature, int iCnt)
+{
+	CString str;
+	int nRow, nCol;
+	int iSubIndex = 0;
+	//////////////////////////////////////////////////////////////////////////
+	// 열 방향 TEXT
+	// 고정 TEXT 기재
+	nCol = 0;
+	nRow = 0;	//Data Set하려는 시작지점
+	for (int i = 0; i < iCnt; i++)
+	{
+		int iIdx = i + 1;
+		CDefectFeature* pDefect = &(pDefectFeature[i]);
+		
+		if (pDefect == NULL)
+			continue;
+
+		str.Format("%d", iIdx);	//Data 읽어서 뿌리기
+		m_ctrlGrid.SetItemText(iIdx, nRow, str);
+
+		iSubIndex = 1;
+
+		str.Format("%d", pDefect->iCenterx);
+		m_ctrlGrid.SetItemText(iIdx, iSubIndex++, str);
+
+		str.Format("%d", pDefect->iCentery);
+		m_ctrlGrid.SetItemText(iIdx, iSubIndex++, str);
+
+		str.Format("%d", pDefect->iArea);
+		m_iPixelCount += pDefect->iArea;
+		m_ctrlGrid.SetItemText(iIdx, iSubIndex++, str);
+	}
+
+	m_ctrlGrid.Invalidate(FALSE);
+}
+
+void CDetectionModuleDlg::SetDialogColor()
+{
+	m_pDlgGraphView->SetBGColor(BG_COLOR);
+	m_pDlgGraphView->SetCtrlColor(FONT_COLOR);
+	m_pDlgGraphView->SetBtnColor(TAB_BTN_COLOR1, TAB_BTN_COLOR2);
+}
 
 void CDetectionModuleDlg::OnBnClickedButtonLoadImage()
 {
@@ -399,7 +516,8 @@ void CDetectionModuleDlg::Inspection(int iScanNo, int iFrameNo)
 		reinterpret_cast<BYTE*>(m_iplProcImage->imageData),
 		m_iplProcImage->widthStep, m_iplProcImage->height);
 
-	//SetDefect(m_DDMAlgorithm->m_DefectFeature, m_DDMAlgorithm->m_iDefectCnt);
+	UpdateDefectDataGrid(m_DetectionAlgorithm->m_DefectFeature, m_DetectionAlgorithm->m_iDefectCnt);
+	//SetDefect(m_DetectionAlgorithm->m_DefectFeature, m_DetectionAlgorithm->m_iDefectCnt);
 
 	m_pImageWnd->Invalidate();
 }

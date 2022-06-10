@@ -16,6 +16,7 @@
 #define IDC_STATIC_TEXT                 206
 #define IDR_CONTEXTMENU                 1000
 #define ID_PROFILE                      1001
+#define IDC_GRID_1                      1001
 #define ID_DRAW_DEFECT                  1002
 #define ID_PAN_IMAGE                    1003
 #define ID_NORMALIZE_GRAY               1004
@@ -42,7 +43,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        132
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1001
+#define _APS_NEXT_CONTROL_VALUE         1002
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

@@ -12,7 +12,7 @@
 #define CHART_STACKGRAPHCOUNT		4
 #define CHART_SIZEGRAPHCOUNT		4
 #define CHART_JUDGEMENTGRAPHCOUNT	3
-#define MAX_TRENDCOUNT			50
+#define MAX_TRENDCOUNT				50
 
 
 class	CDetectionModuleDlg;
@@ -55,6 +55,8 @@ protected:
 	//{{AFX_MSG(CDlgGraphView)
 	virtual void OnOK();
 	virtual void OnCancel();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	virtual BOOL OnInitDialog();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
@@ -63,18 +65,15 @@ protected:
 
 private:
 	CDetectionModuleDlg*		m_pView;
-	int*				m_pCurTrendType;
-	int					m_nTrendMaxValue;
+	int*						m_pCurTrendType;
 
-	int					m_nGraphColor[CHART_TYPEGRAPHCOUNT];
-	double				m_dDefectCount[CHART_TYPEGRAPHCOUNT][MAX_TRENDCOUNT];
-	char				m_strLabels[MAX_TRENDCOUNT][50];
+	int							m_nGraphColor[CHART_TYPEGRAPHCOUNT];
+	double						m_dDefectCount[CHART_TYPEGRAPHCOUNT][MAX_TRENDCOUNT];
+	char						m_strLabels[MAX_TRENDCOUNT][50];
 
 public:
-	void				ResetDefectCount();
-	void				SetGraphView(CDetectionModuleDlg* pView);
-	void				InitDefectView();
+	void						ResetDefectCount();
+	void						SetGraphView(CDetectionModuleDlg* pView);
+	void						InitDefectView();
 
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	virtual BOOL OnInitDialog();
 };

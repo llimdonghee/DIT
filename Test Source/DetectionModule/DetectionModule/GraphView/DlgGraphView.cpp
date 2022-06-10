@@ -92,12 +92,10 @@ void CDlgGraphView::ResetDefectCount()
 		for( int i = 0; i < CHART_TYPEGRAPHCOUNT; i++ )
 			m_dDefectCount[i][j] = 0;
 	}
-
-	m_nTrendMaxValue = 0;
 }
 
-#define DEFECT_GRAPH_W		790
-#define DEFECT_GRAPH_H		270
+#define DEFECT_GRAPH_W			1000
+#define DEFECT_GRAPH_H			1000
 #define GRAPH_BG_COLOR			RGB(146, 136, 86)
 #define GRAPH_TITLE_COLOR		RGB(255, 255, 255)
 #define GRAPH_ZONE_COLOR		RGB(0, 0, 0)
