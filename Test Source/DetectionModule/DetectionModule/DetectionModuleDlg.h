@@ -52,6 +52,7 @@ public:
 
 	CButton m_EnableHorizontalComp;
 	CButton m_EnableDiagonalComp;
+
 //변수 선언
 public:
 	CDlgGraphView*			m_pDlgGraphView;
@@ -94,6 +95,7 @@ public:
 	CRect m_rtROI, m_rtCuttingROI;
 	int m_iDefectCount, m_iPixelCount;
 
+	CString strLog;
 //함수 선언
 public:
 	CRect m_rtDisplayRoiCoordinate;

@@ -1,4 +1,9 @@
 ﻿cl : 명령줄 warning D9035: 'Gm' 옵션은 더 이상 사용되지 않으므로 이후 릴리스에서 제거될 예정입니다.
+  DlgGraphView.cpp
+  >>Kim Tae Hyun - Graph<< Will automatically link with Graphd_x64_vc15.lib
+  >>Kim Tae Hyun - STL<< Will automatically link with STLd_WS10_x64.lib
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(58): warning C4309: '인수': 상수 값이 잘립니다.
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(149): warning C4309: '인수': 상수 값이 잘립니다.
   DetectionModuleDlg.cpp
 c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(58): warning C4309: '인수': 상수 값이 잘립니다.
 c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(149): warning C4309: '인수': 상수 값이 잘립니다.
@@ -34,6 +39,14 @@ c:\users\dit-847\documents\dit\test source\detectionmodule\imagestone\include\im
 c:\users\dit-847\documents\dit\test source\detectionmodule\imagestone\include\imagefile\imagehandle_ipicture.h(55): warning C4312: '형식 캐스트': 'OLE_HANDLE'에서 더 큰 'HBITMAP'(으)로의 변환입니다.
   >>Kim Tae Hyun - Graph<< Will automatically link with Graphd_x64_vc15.lib
   >>Kim Tae Hyun - STL<< Will automatically link with STLd_WS10_x64.lib
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionmoduledlg.cpp(125): warning C4717: 'CDetectionModuleDlg::PreCreateWindow': 모든 제어 경로에서 재귀적입니다. 함수로 인해 런타임 스택 오버플로가 발생합니다.
-c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionmoduledlg.cpp(575): warning C4715: 'CDetectionModuleDlg::LoadFrameImage': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  코드를 생성하고 있습니다...
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionmoduledlg.cpp(127): warning C4717: 'CDetectionModuleDlg::PreCreateWindow': 모든 제어 경로에서 재귀적입니다. 함수로 인해 런타임 스택 오버플로가 발생합니다.
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionmoduledlg.cpp(577): warning C4715: 'CDetectionModuleDlg::LoadFrameImage': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  컴파일하고 있습니다...
+  DetectionModule.cpp
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(58): warning C4309: '인수': 상수 값이 잘립니다.
+c:\users\dit-847\documents\dit\test source\detectionmodule\detectionmodule\detectionalgorithm\detectionalgorithm.h(149): warning C4309: '인수': 상수 값이 잘립니다.
+  코드를 생성하고 있습니다...
+  건너뛰고 있습니다... (관련된 변경 내용 없음)
+  ImageWnd.cpp
   DetectionModule.vcxproj -> C:\Users\DIT-847\Documents\DIT\Test Source\DetectionModule\\bin\DetectionModuled_x64_vc17.exe

@@ -56,6 +56,7 @@ BOOL CDetectionModuleDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);
 	SetIcon(m_hIcon, FALSE);
 
+	
 	// 버전 관리 규칙 : [주,부,수]
 	// 주(Major) = 기존버전에서 API가 변경되어 호환이 되지 않는 경우
 	// 부(Minor) = 기존버전과 호환되면서 기능이 추가될 경우
@@ -89,6 +90,7 @@ BOOL CDetectionModuleDlg::OnInitDialog()
 	InitDefectGridControl();
 	InitConditionGridControl();
 	GetGridParam();
+
 	return TRUE;
 }
 
@@ -757,7 +759,8 @@ DWORD WINAPI CDetectionModuleDlg::ThreadProc(__in  LPVOID lpParameter)
 
 		pDlg->Inspection(iScaneNo, iFrameNo);
 
-		pDlg->DisplayStatus("Inspection End");
+		pDlg->strLog.Format("Inspection End [Defect Cnt : %d]", pDlg->m_DetectionAlgorithm->m_iDefectCnt);
+		pDlg->DisplayStatus(pDlg->strLog);
 	}
 
 	return 0;
